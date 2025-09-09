@@ -1,0 +1,6 @@
+{
+  "html": "html/character.html",
+  "css": "css/sheet.css",
+  "authors": "TwojeImięLubNick",
+  "instructions": "Polska wersja karty postaci do Roll20. Skopiuj/wklej HTML i CSS do Roll20. API jest opcjonalne."
+}
