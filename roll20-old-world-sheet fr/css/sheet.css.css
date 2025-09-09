@@ -1,0 +1,1982 @@
+:root{
+  --bg:#efe9dd; --ink:#1d1a16; --muted:#6b5b4a;
+  --accent:#7b1e1e; --accent-dark:#5e1414; --gold:#c4a567;
+  --line:#b79f7a; --input-bg:rgba(255,255,255,.6);
+  --parchment-url:url('https://files.d20.io/images/453993551/WhdBRpWALo44QgTUKc8wVA/med.png?1756066048');
+}
+
+/* Wrapper & titres */
+.charsheet .sheet-wrapper{
+  max-width:1100px;margin:0 auto;padding:18px 20px 28px;color:var(--ink);
+  background:
+    radial-gradient(ellipse at top left,rgba(255,255,255,.35),rgba(0,0,0,0) 60%),
+    radial-gradient(ellipse at bottom right,rgba(0,0,0,.07),rgba(0,0,0,0) 60%),
+    var(--parchment-url);
+  background-size:cover;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.25);
+  border-radius:6px;font-family:"Georgia","Times New Roman",serif;line-height:1.2;
+}
+.charsheet h1,.charsheet h2{
+  margin:16px 0 10px;font-weight:700;letter-spacing:.02em;color:#f6efe6;text-transform:uppercase;text-shadow:0 1px 0 rgba(0,0,0,.3);
+}
+.charsheet h1{background:linear-gradient(180deg,var(--accent),var(--accent-dark));border:1px solid #3b0e0e;border-left:6px solid var(--gold);padding:8px 12px;font-size:20px;}
+.charsheet h2{background:linear-gradient(180deg,#7f2626,#651b1b);border:1px solid #3b0e0e;border-left:4px solid var(--gold);padding:6px 10px;font-size:16px;}
+
+/* Onglets */
+.tab-toggle{ display:none; }
+.tabs{ display:flex; gap:8px; margin-bottom:10px; align-items:flex-end; }
+.tabs .tab{
+  background:#e6dfd2;border:1px solid var(--line);border-bottom:none;border-radius:6px 6px 0 0;
+  padding:6px 12px;cursor:pointer;font-weight:700;color:#4a3b2a;
+}
+#tab-personnage:checked ~ .tabs label[for="tab-personnage"],
+#tab-magie:checked      ~ .tabs label[for="tab-magie"],
+#tab-notes:checked      ~ .tabs label[for="tab-notes"]{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#fff;border-color:var(--accent-dark);
+}
+.pages{background:rgba(255,255,255,.28);border:1px solid var(--line);border-radius:0 6px 6px 6px;padding:10px;}
+.page{ display:none; }
+#tab-personnage:checked ~ .pages .page-personnage{ display:block; }
+#tab-magie:checked      ~ .pages .page-magie{      display:block; }
+#tab-notes:checked      ~ .pages .page-notes{      display:block; }
+
+/* Inputs & sections */
+.charsheet label{display:inline-flex;align-items:center;gap:6px;margin:6px 12px 6px 0;color:var(--ink);font-size:13px;}
+.charsheet input[type="text"],.charsheet input[type="number"],.charsheet textarea,.charsheet select{
+  appearance:none;-webkit-appearance:none;background:var(--input-bg);
+  border:1px solid var(--line);border-radius:4px;padding:5px 7px;color:var(--ink);font-size:13px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+}
+.charsheet textarea{width:100%;min-height:80px;resize:vertical;}
+.charsheet .sheet-section{background:rgba(255,255,255,.35);border:1px solid var(--line);border-left:4px solid var(--gold);padding:10px;margin:10px 0 14px;border-radius:4px;}
+.charsheet .box{display:flex;flex-direction:column;gap:8px;}
+.charsheet .box-title{font-weight:800;color:var(--accent-dark);}
+
+/* Identité (en ligne) */
+.identity-grid.one-line{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.identity-grid.one-line label{display:flex;flex-direction:row;align-items:center;gap:8px;margin:0;}
+.identity-grid.one-line input{flex:1;}
+
+/* ===== PARAMÈTRES ===== */
+.params-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
+.param-stack{display:flex;flex-direction:column;gap:12px;}
+.param-card{background:rgba(255,255,255,.32);border:1px solid var(--line);border-radius:6px;padding:10px;}
+.param-title{font-weight:800;color:#fff;background:linear-gradient(180deg,#7f2626,#5e1414);border:1px solid #3b0e0e;border-left:4px solid var(--gold);padding:4px 8px;border-radius:4px;margin:0 0 6px;}
+.xp-row{display:flex;gap:8px;flex-wrap:nowrap;}
+.xp-row label{flex:1;display:flex;align-items:center;gap:6px;margin:0;}
+.xp-row input{min-width:0;}
+
+/* Pips (Destin & Monnaie) */
+.piprow{display:flex;align-items:center;gap:8px;margin:4px 0;}
+.piprow.tight{gap:6px;}
+.piplabel{min-width:76px;font-weight:700;color:var(--accent-dark);}
+.pips{display:flex;gap:6px;flex-wrap:nowrap;}
+.pip input{position:absolute;opacity:0;width:0;height:0;}
+.pip span{display:inline-block;width:16px;height:16px;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.85);}
+.pip input:checked+span{background:linear-gradient(180deg,var(--accent),var(--accent-dark));border-color:var(--accent-dark);}
+.coin-pips{gap:6px;}
+
+/* ===== PROFIL : uniquement ces clusters en 2 colonnes ===== */
+.profile-clusters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.cluster{background:rgba(255,255,255,.32);border:1px solid var(--line);border-radius:6px;padding:10px;}
+.cluster-title{
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(180deg,#7f2626,#5e1414);color:#fff;
+  padding:4px 8px;border-radius:4px;font-weight:800;margin-bottom:6px;
+}
+
+/* Flag cochable visible sur bandeau sombre */
+.cluster-flag input{position:absolute;opacity:0;width:0;height:0;}
+.cluster-flag .flag-box{
+  display:inline-block;width:16px;height:16px;border:2px solid var(--gold);border-radius:4px;
+  background:#fff; box-shadow:0 0 0 2px rgba(0,0,0,.15) inset;
+}
+.cluster-flag input:checked + .flag-box{
+  background:var(--gold); border-color:#8f6f2e; box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);
+}
+
+/* 8 ronds & 8 carrés — très serrés pour tenir dans la case */
+.pips8,.squares8{display:flex;gap:1px;flex-wrap:nowrap;}
+.pip8 input,.sq8 input{position:absolute;opacity:0;width:0;height:0;}
+.pip8 span{display:inline-block;width:12px;height:12px;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.95);}
+.sq8  span{display:inline-block;width:12px;height:12px;border:1px solid var(--line);border-radius:2px;background:rgba(255,255,255,.95);}
+.pip8 input:checked+span,.sq8 input:checked+span{background:linear-gradient(180deg,var(--accent),var(--accent-dark));border-color:var(--accent-dark);}
+.progressrow{display:flex;align-items:center;gap:6px;margin-top:4px;}
+.progressrow .piplabel{min-width:auto;margin-right:4px;}
+
+/* ===== COMBAT ===== */
+.combat-grid{
+  display:grid;
+  grid-template-areas:
+    "resilience armes"
+    "blessures  conditions";
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.encadre{border:2px solid var(--line);background:rgba(255,255,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 3px rgba(0,0,0,.06);}
+
+/* Résilience en une ligne + pastilles */
+.res-topline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.res-pill{padding:2px 8px;border-radius:999px;font-weight:700;border:1px solid var(--line);}
+.res-pill-e{background:#7b1e1e;color:#fff;}
+.res-pill-total{background:rgba(123,30,30,.15);}
+.segmented.one-line{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.segmented .segment input{position:absolute;opacity:0;width:0;height:0;}
+.segmented .segment span{display:inline-block;padding:3px 8px;background:rgba(255,255,255,.92);border-right:1px solid var(--line);font-weight:700;white-space:nowrap;}
+.segmented .segment:last-child span{border-right:none;}
+.segmented .segment input:checked+span{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#fff;border-color:var(--accent-dark);}
+.shield-check{display:inline-flex;align-items:center;gap:6px;}
+.shield-check input{position:absolute;opacity:0;width:0;height:0;}
+.shield-check .shield-label{display:inline-block;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.92);font-weight:700;}
+.shield-check input:checked + .shield-label{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#fff;border-color:var(--accent-dark);}
+
+.armes-head{display:grid;grid-template-columns:1.2fr 0.6fr 0.5fr 0.5fr 0.5fr 1fr;gap:8px;font-weight:700;color:var(--accent-dark);margin-bottom:6px;}
+.armes-row{display:grid;grid-template-columns:1.2fr 0.6fr 0.5fr 0.5fr 0.5fr 1fr;gap:8px;align-items:center;margin:6px 0;}
+
+/* ===== MAGIE ===== */
+.magic-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas: "params effects";
+  gap:10px;
+}
+.magic-params .magic-row{display:grid;grid-template-columns: 1fr 1fr auto;gap:12px;align-items:end;}
+.magic-params label{display:flex;flex-direction:column;}
+.magic-params input[readonly]{background:rgba(255,255,255,.5);font-weight:700;}
+.chk-inline{display:flex;align-items:center;gap:8px;}
+.chk-inline input{position:absolute;opacity:0;width:0;height:0;}
+.chk-inline .fakebox{display:inline-block;width:16px;height:16px;border:1px solid var(--line);border-radius:3px;background:rgba(255,255,255,.85);}
+.chk-inline input:checked + .fakebox{background:linear-gradient(180deg,var(--accent),var(--accent-dark));border-color:var(--accent-dark);}
+
+/* Sorts */
+.magic-sorts .sorts-head{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr 0.7fr 0.8fr;
+  gap:8px;font-weight:700;color:var(--accent-dark);
+  margin-bottom:6px;border-bottom:1px solid var(--line);padding-bottom:4px;
+}
+.magic-sorts .sorts-row{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr 0.7fr 0.8fr;
+  gap:8px;align-items:center;margin:6px 0 4px;
+}
+.magic-sorts .sorts-row input[type="text"], .magic-sorts .sorts-row select{width:100%;}
+.magic-sorts .sorts-effect{
+  display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:start;margin:0 0 10px;padding:8px;
+  background:rgba(255,255,255,.25);border:1px solid var(--line);border-radius:4px;
+}
+.magic-sorts .sorts-effect label{font-weight:700;color:var(--accent-dark);margin:2px 0 0;}
+.magic-sorts .sorts-effect textarea{
+  width:100%;min-height:64px;max-height:none;resize:vertical;background:var(--input-bg);
+  border:1px solid var(--line);border-radius:4px;padding:6px 8px;line-height:1.25;
+}
+
+/* ===== NOTES ===== */
+.notes-box{padding:10px;}
+.notes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.notes-col{
+  display:flex;flex-direction:column;background:rgba(255,255,255,.25);
+  border:1px solid var(--line);border-radius:4px;padding:6px;
+}
+.notes-col-title{font-weight:800;color:var(--accent-dark);margin:0 0 6px;border-bottom:1px solid var(--line);padding-bottom:4px;text-align:center;}
+.notes-col .list-row{display:flex;gap:6px;align-items:center;margin:4px 0;}
+.notes-col .list-row input[type="text"]{width:100%;}
+
+/* Responsive (optionnel : passer Profil en 1 colonne sur petit écran) */
+@media (max-width:1100px){
+  .profile-clusters{ grid-template-columns:1fr; }
+  .combat-grid{grid-template-columns:1fr;grid-template-areas:"resilience" "armes" "blessures" "conditions";}
+}
+
+/* Print */
+@media print{
+  .sheet-wrapper{box-shadow:none !important;background:#fff !important;}
+}
+/* --- Patch : Profil toujours en 2 colonnes --- */
+.charsheet .profile-clusters{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:12px;
+  align-items:start;
+}
+
+/* Annule le passage à 1 colonne sur petit écran */
+@media (max-width:1100px){
+  .charsheet .profile-clusters{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Juste au cas où un style hérité forcerait la largeur */
+.charsheet .profile-clusters .cluster{ width:auto; }
+/* === PATCH IDENTITÉ : maintien en 1 ligne + anti-débordement === */
+.charsheet .identity-grid.one-line{
+  grid-template-columns: 1fr 1fr 1fr; /* 3 cases sur une ligne */
+  gap: 10px;
+}
+.charsheet .identity-grid.one-line label{ min-width:0; } /* autorise le shrink */
+.charsheet .identity-grid.one-line input[type="text"]{
+  width:100%;
+  box-sizing:border-box;
+  min-width:0;           /* évite que "Carrière" déborde */
+}
+
+/* === PATCH PROFIL : ronds/carrés plus serrés (encore) === */
+.charsheet .pips8,
+.charsheet .squares8{
+  gap: 4px;              /* était plus large -> on réduit encore */
+}
+.charsheet .pip8 span{   /* ronds */
+  width:16px; height:16px;
+}
+.charsheet .sq8 span{    /* carrés */
+  width:16px; height:16px; border-radius:3px;
+}
+/* Optionnel : on resserre aussi la ligne entière (label + pips) */
+.charsheet .cluster .piprow,
+.charsheet .cluster .progressrow{
+  column-gap: 8px;       /* espace entre "Carac/Progression" et les pips */
+}
+
+/* === PATCH PROFIL : encadrer les COMPÉTENCES (mêlée, défense, etc.) === */
+/* (toutes les .piprow SAUF la ligne .carac = compétence ; + progression) */
+.charsheet .cluster .piprow:not(.carac),
+.charsheet .cluster .progressrow{
+  padding:6px 8px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background: rgba(255,255,255,.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+/* === PATCH PROFIL : encadrer la LIGNE CARAC avec une couleur "puces" === */
+.charsheet .cluster .piprow.carac{
+  padding:6px 8px;
+  border:1px solid var(--accent-dark);
+  border-left:4px solid var(--accent);            /* rappel couleur des puces */
+  border-radius:6px;
+  background: linear-gradient(180deg, rgba(123,30,30,.09), rgba(94,20,20,.06));
+}
+
+/* === PATCH PROFIL : case cochable (flag) bien visible sur les bandeaux foncés === */
+.charsheet .cluster-title .flag input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .cluster-title .flag span{
+  display:inline-block; width:16px; height:16px; margin-left:8px;
+  border:1px solid var(--gold); border-radius:3px; background:rgba(255,255,255,.85);
+  box-shadow:0 0 0 1px rgba(0,0,0,.08) inset;
+  vertical-align:middle;
+}
+.charsheet .cluster-title .flag input:checked + span{
+  background: linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color: var(--accent-dark);
+}
+
+/* === PATCH PARAMÈTRES : XP en une seule ligne (labels rapprochés) === */
+.charsheet .xp-box{ display:grid; grid-template-columns: auto 1fr auto 1fr auto 1fr; gap:8px; align-items:center; }
+.charsheet .xp-box input[type="number"]{ width:100%; }
+
+/* === PATCH COMBAT : résilience en ligne + titres mis en valeur === */
+.charsheet .res-choices{
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; /* tout sur une ligne si possible */
+}
+.charsheet .res-choices .radio-chip{
+  display:inline-flex; align-items:center; gap:6px; padding:4px 8px;
+  border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.6);
+  white-space:nowrap;
+}
+.charsheet .res-choices .radio-chip input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .res-choices .radio-chip .dot{
+  width:12px; height:12px; border:1px solid var(--line); border-radius:50%; background:#fff;
+}
+.charsheet .res-choices .radio-chip input:checked + .dot{
+  background: linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color: var(--accent-dark);
+}
+
+/* Titres E et Total mieux mis en avant */
+.charsheet .res-e{
+  font-weight:700; color:var(--accent-dark);
+  background: rgba(255,255,255,.45);
+  border:1px solid var(--line); border-radius:4px; padding:6px 8px; margin-bottom:8px;
+}
+.charsheet .res-totalbox{
+  display:grid; grid-template-columns: 70px 1fr; gap:8px; align-items:center;
+}
+.charsheet .res-total-label{
+  font-weight:800; text-transform:uppercase; letter-spacing:.02em; text-align:center;
+  color:#fff; background: linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark); border-radius:4px; padding:4px 6px;
+}
+.charsheet .res-total-number{
+  font-size:22px; font-weight:800; background:rgba(255,255,255,.4);
+  border:1px solid var(--line); border-radius:4px; padding:4px 8px;
+}
+
+/* === PATCH COMBAT : pièces plus compactes dans Statut & Pièces === */
+.charsheet .money-rows{ display:grid; grid-auto-rows:min-content; gap:6px; }
+.charsheet .money-row{ display:grid; grid-template-columns: 80px 1fr; gap:8px; align-items:center; }
+.charsheet .pips{ display:flex; gap:6px; flex-wrap:nowrap; }
+.charsheet .pips .pip span{ width:16px; height:16px; } /* plus petit, tient mieux */
+/* ==== FIT & ALIGN : ronds/carrés dans les clusters ==== */
+:root{
+  /* Taille & espacement ultra-compacts (tu peux ajuster) */
+  --pip-size: 14px;       /* diamètre des ronds / côté des carrés */
+  --pip-gap:  3px;        /* espace entre puces */
+  --label-col: 86px;      /* largeur de la colonne "Carac / Progression / nom de comp" */
+}
+
+/* Le cluster ne déborde jamais */
+.charsheet .cluster{
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Chaque rangée de puces : colonne fixe pour le label + grille de 8 puces */
+.charsheet .cluster .piprow,
+.charsheet .cluster .progressrow{
+  display: grid;
+  grid-template-columns: var(--label-col) 1fr;
+  align-items: center;
+  column-gap: 6px;
+}
+
+/* Labels courts, empêchent l’élargissement */
+.charsheet .cluster .piplabel{
+  min-width: 0;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+/* Grilles de puces : 8 colonnes fixes + faible gap */
+.charsheet .pips8,
+.charsheet .squares8{
+  display: grid;
+  grid-template-columns: repeat(8, var(--pip-size));
+  justify-content: start;
+  align-content: center;
+  gap: var(--pip-gap);
+  margin: 0; padding: 0;
+}
+
+/* Chaque case de puce (le <label>) est strictement dimensionnée */
+.charsheet .pip8,
+.charsheet .sq8{
+  width: var(--pip-size);
+  height: var(--pip-size);
+  display: inline-grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+
+/* RONDS */
+.charsheet .pip8 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip8 span{
+  width: var(--pip-size);
+  height: var(--pip-size);
+  border:1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  box-sizing: border-box;
+}
+.charsheet .pip8 input:checked + span{
+  background: linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color: var(--accent-dark);
+}
+
+/* CARRÉS (Progression) */
+.charsheet .sq8 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .sq8 span{
+  width: var(--pip-size);
+  height: var(--pip-size);
+  border:1px solid var(--line);
+  border-radius: 3px;
+  background: rgba(255,255,255,.9);
+  box-sizing: border-box;
+}
+.charsheet .sq8 input:checked + span{
+  background: linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color: var(--accent-dark);
+}
+
+/* Encadrement visuel des lignes compétences & progression (sans gonfler la boîte) */
+.charsheet .cluster .piprow:not(.carac),
+.charsheet .cluster .progressrow{
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255,255,255,.3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+/* Ligne CARAC mise en avant (fine pour garder tout dedans) */
+.charsheet .cluster .piprow.carac{
+  padding: 4px 6px;
+  border: 1px solid var(--accent-dark);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(123,30,30,.08), rgba(94,20,20,.05));
+}
+
+/* Serrage global de l’intérieur du cluster pour gagner quelques px */
+.charsheet .cluster .cluster-body{
+  display: grid;
+  gap: 6px; /* plus petit = tout rentre mieux */
+}
+
+/* Si une rangée était vraiment limite en largeur, permettre une légère compression */
+.charsheet .cluster .pips8,
+.charsheet .cluster .squares8{
+  max-width: 100%;
+}
+
+/* Identité en ligne, sans débordement */
+.charsheet .identity-grid.one-line{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.charsheet .identity-grid.one-line label{ min-width: 0; }
+.charsheet .identity-grid.one-line input[type="text"]{
+  width: 100%; min-width: 0; box-sizing: border-box;
+}
+
+/* Option : rétrécir un peu encore si l’environnement est très étroit */
+@media (max-width: 900px){
+  :root{
+    --pip-size: 13px;
+    --pip-gap: 2px;
+    --label-col: 80px;
+  }
+}
+/* ---- Ajustement douceur : puces mieux espacées, sans déborder ---- */
+:root{
+  --pip-size: 16px;   /* était 14px */
+  --pip-gap:  4px;    /* était 3px */
+  --label-col: 90px;  /* laisse un peu plus de place au libellé */
+}
+
+/* Grilles des puces inchangées, on applique juste les nouvelles variables */
+.charsheet .pips8,
+.charsheet .squares8{
+  grid-template-columns: repeat(8, var(--pip-size));
+  gap: var(--pip-gap);
+}
+
+.charsheet .pip8 span,
+.charsheet .sq8 span{
+  width: var(--pip-size);
+  height: var(--pip-size);
+}
+
+/* Option : si très petite largeur écran, on resserre un poil pour éviter le débord */
+@media (max-width: 900px){
+  :root{
+    --pip-size: 15px;
+    --pip-gap:  3px;
+    --label-col: 86px;
+  }
+}
+/* ---- Ajustement final : puces élargies et espacées ---- */
+:root{
+  --pip-size: 18px;   /* diamètre des ronds et côté des carrés */
+  --pip-gap: 6px;     /* espace entre chaque puce */
+  --label-col: 92px;  /* largeur réservée aux libellés */
+}
+
+.charsheet .pips8,
+.charsheet .squares8{
+  grid-template-columns: repeat(8, var(--pip-size));
+  gap: var(--pip-gap);
+}
+
+.charsheet .pip8 span,
+.charsheet .sq8 span{
+  width: var(--pip-size);
+  height: var(--pip-size);
+}
+/* ====== Mise en page Magie ====== */
+.charsheet .magic-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas: "params effects";
+  gap:10px;
+}
+.charsheet .magic-params .magic-row{
+  display:flex; flex-direction:column; gap:10px;
+}
+.charsheet .magic-params .rowline{
+  display:grid; grid-template-columns: 180px 1fr; gap:10px; align-items:center;
+}
+.charsheet .magic-params .rowlabel{ font-weight:700; }
+
+/* Bouton Incantation */
+.charsheet .btn-pill{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+}
+.charsheet .btn-pill:hover{ filter:brightness(1.05); }
+
+/* Pips x4 */
+.charsheet .pips4{ display:grid; grid-template-columns: repeat(4, 18px); gap:6px; }
+.charsheet .pip4 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip4 span{
+  width:18px; height:18px; border:1px solid var(--line); border-radius:50%;
+  background:rgba(255,255,255,.9); box-sizing:border-box;
+}
+.charsheet .pip4 input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color:var(--accent-dark);
+}
+
+/* Défaillance : zone liste identique au look global */
+.charsheet .magic-effects .box-title{ font-weight:800; color:var(--accent-dark); }
+
+/* Sorts : toggle boutons */
+.charsheet .togglebtn{
+  display:inline-flex; align-items:center; gap:8px; justify-content:center;
+  padding:4px 10px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.7); cursor:pointer; user-select:none;
+  white-space:nowrap;
+}
+.charsheet .togglebtn input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .togglebtn input:checked + span{
+  color:#fff; font-weight:800;
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark);
+  padding:2px 8px; border-radius:999px;
+}
+.charsheet .togglebtn span{ display:inline-block; }
+
+/* Sorts : textarea large et souple */
+.charsheet .magic-sorts .sorts-effect textarea.elastic-text{
+  width:100%; min-height:96px; resize:vertical; /* l’utilisateur peut étirer */
+  background:var(--input-bg); border:1px solid var(--line); border-radius:4px; padding:6px 8px;
+  line-height:1.25; box-sizing:border-box;
+}
+/* ====== Mise en page Magie ====== */
+.charsheet .magic-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas: "params effects";
+  gap:10px;
+}
+.charsheet .magic-params .magic-row{
+  display:flex; flex-direction:column; gap:10px;
+}
+.charsheet .magic-params .rowline{
+  display:grid; grid-template-columns: 200px 1fr; gap:10px; align-items:center;
+}
+.charsheet .magic-params .rowlabel{ font-weight:700; }
+
+/* Bouton Incantation */
+.charsheet .btn-pill{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+}
+.charsheet .btn-pill:hover{ filter:brightness(1.05); }
+
+/* Pips x4 (radios stylés) */
+.charsheet .pips4{
+  display:grid;
+  grid-template-columns: repeat(4, 20px);
+  gap:8px;
+  align-items:center;
+}
+.charsheet .pip4{ width:20px; height:20px; display:inline-grid; place-items:center; }
+.charsheet .pip4 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip4 span{
+  width:20px; height:20px; border:1px solid var(--line); border-radius:50%;
+  background:rgba(255,255,255,.9); box-sizing:border-box;
+  transition:transform .05s ease-in-out;
+}
+.charsheet .pip4 input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color:var(--accent-dark);
+}
+.charsheet .pip4:hover span{ transform:scale(1.06); }
+
+/* Défaillance : titre inchangé, style cohérent */
+.charsheet .magic-effects .box-title{ font-weight:800; color:var(--accent-dark); }
+
+/* Sorts : toggle boutons */
+.charsheet .togglebtn{
+  display:inline-flex; align-items:center; gap:8px; justify-content:center;
+  padding:4px 10px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.7); cursor:pointer; user-select:none;
+  white-space:nowrap;
+}
+.charsheet .togglebtn input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .togglebtn input:checked + span{
+  color:#fff; font-weight:800;
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark);
+  padding:2px 8px; border-radius:999px;
+}
+.charsheet .togglebtn span{ display:inline-block; }
+
+/* Sorts : textarea large et souple (redimensionnement manuel) */
+.charsheet .magic-sorts .sorts-effect textarea.elastic-text{
+  width:100%; min-height:110px; resize:vertical;
+  background:var(--input-bg); border:1px solid var(--line); border-radius:4px; padding:6px 8px;
+  line-height:1.25; box-sizing:border-box;
+}
+/* ====== Magie : colonne de droite plus large ====== */
+.charsheet .magic-grid{
+  grid-template-columns: 0.9fr 1.1fr; /* ↓ gauche, ↑ droite */
+}
+
+/* ====== Encadrement sombre pour "Niveau de mage" & "Réserve..." ====== */
+.charsheet .magic-params .rowline.subbox{
+  border:2px solid var(--accent-dark);
+  background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.45));
+  border-radius:6px;
+  padding:8px 10px;
+}
+
+/* ====== Défaillance magique : titre centré + pourtour assombri ====== */
+.charsheet .magic-effects{
+  border-color: var(--accent-dark);
+}
+.charsheet .magic-effects .box-title{
+  text-align:center;
+  font-weight:900;
+  color:#fff;
+  background:linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border:2px solid var(--accent-dark);
+  border-radius:6px;
+  padding:6px 10px;
+  margin-bottom:8px;
+}
+
+/* ====== Boutons "Formalisé / Mémorisé" compacts ====== */
+.charsheet .magic-sorts .sorts-row{
+  grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr auto auto; /* laisse respirer les boutons */
+  gap:8px;
+}
+.charsheet .togglebtn{
+  padding:2px 8px;
+  border-radius:999px;
+  font-size:12px;
+  line-height:1;
+  white-space:nowrap;
+}
+.charsheet .togglebtn input:checked + span{
+  padding:1px 7px; /* plus fin quand actif */
+}
+
+/* (option) si très petites largeurs, on réduit encore un poil */
+@media (max-width: 980px){
+  .charsheet .magic-sorts .sorts-row{
+    grid-template-columns: 1.1fr 0.9fr 0.8fr 0.8fr auto auto;
+    gap:6px;
+  }
+  .charsheet .togglebtn{ font-size:11px; padding:2px 7px; }
+}
+/* ====== Mise en page Magie ====== */
+.charsheet .magic-grid{
+  display:grid;
+  grid-template-columns: 0.9fr 1.1fr; /* gauche plus étroit, droite plus large */
+  grid-template-areas: "params effects";
+  gap:10px;
+}
+.charsheet .magic-params .magic-row{
+  display:flex; flex-direction:column; gap:10px;
+}
+.charsheet .magic-params .rowline{
+  display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center;
+}
+.charsheet .magic-params .rowlabel{ font-weight:700; }
+/* ===== MAGIE — colonne 1 => ligne du haut, colonne 2 => ligne du bas ===== */
+.charsheet .magic-grid-rows{
+  display:grid;
+  grid-template-rows:auto auto; /* top puis bottom */
+  gap:12px;
+}
+
+/* Ligne du haut : 3 boîtes sur une ligne, sans chevauchement */
+.charsheet .magic-row-top{
+  display:grid;
+  grid-template-columns: 1fr 0.8fr 1fr; /* Niveau | Bouton | Réserve */
+  gap:12px;
+  align-items:center;
+  min-width:0;
+}
+.charsheet .magic-row-top *{ min-width:0; } /* éviter les débordements */
+
+/* Boîtes de la ligne du haut */
+.charsheet .magic-row-top .topbox{
+  background:rgba(255,255,255,.35);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:8px 10px;
+  display:grid;
+  grid-template-columns:max-content 1fr;
+  gap:10px;
+  align-items:center;
+}
+.charsheet .magic-row-top .topbox.subbox{
+  border:2px solid var(--accent-dark);
+  background:linear-gradient(180deg, rgba(94,20,20,.12), rgba(94,20,20,.06));
+}
+.charsheet .magic-row-top .rowlabel{
+  font-weight:800; white-space:nowrap;
+}
+
+/* Pips x4 (radios ronds) */
+.charsheet .pips4{ display:grid; grid-template-columns:repeat(4,22px); gap:8px; }
+.charsheet .pip4{ width:22px; height:22px; display:inline-grid; place-items:center; }
+.charsheet .pip4 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip4 span{
+  width:22px; height:22px; border:1px solid var(--line); border-radius:50%;
+  background:rgba(255,255,255,.9);
+}
+.charsheet .pip4 input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark)); border-color:var(--accent-dark);
+}
+
+/* Bouton Incantation */
+.charsheet .btn-pill{
+  appearance:none;
+  border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+  justify-self:start; max-width:100%;
+}
+
+/* Ligne du bas : Défaillance magique pleine largeur */
+.charsheet .magic-effects .box-title{
+  text-align:center; font-weight:900; color:#fff;
+  background:linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border:2px solid var(--accent-dark); border-radius:6px;
+  padding:6px 10px; margin-bottom:8px;
+}
+
+/* Sorts : anti-chevauchement sûr */
+.charsheet .magic-sorts .sorts-head{
+  display:grid; grid-template-columns:1.2fr 1fr 0.9fr 0.9fr auto;
+  gap:8px; font-weight:700; color:var(--accent-dark);
+  margin-bottom:6px; border-bottom:1px solid var(--line); padding-bottom:4px;
+}
+.charsheet .magic-sorts .sorts-row{
+  display:grid; grid-template-columns:1.2fr 1fr 0.9fr 0.9fr auto;
+  gap:8px; align-items:center; margin:6px 0 4px;
+}
+.charsheet .magic-sorts .sorts-row input[type="text"]{ min-width:0; }
+
+/* Toggles Formalisé / Mémorisé compacts */
+.charsheet .togglegroup{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.charsheet .toggle-reset{ display:none; }
+.charsheet .togglebtn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:2px 8px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.7); cursor:pointer; white-space:nowrap; font-size:12px;
+}
+.charsheet .togglebtn.small{ font-size:11px; padding:2px 7px; }
+.charsheet .togglebtn input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .togglebtn input:checked + span{
+  color:#fff; font-weight:800; background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark); padding:1px 7px; border-radius:999px;
+}
+
+/* Responsive de secours : empiler la ligne du haut si espace trop réduit */
+@media (max-width: 900px){
+  .charsheet .magic-row-top{ grid-template-columns:1fr; }
+}
+
+/* Encadrement plus sombre pour deux sous-blocs */
+.charsheet .magic-params .rowline.subbox{
+  border:2px solid var(--accent-dark);
+  background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.45));
+  border-radius:6px;
+  padding:8px 10px;
+}
+
+/* Bouton Incantation */
+.charsheet .btn-pill{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+}
+.charsheet .btn-pill:hover{ filter:brightness(1.05); }
+
+/* Pips x4 (radios stylés) */
+.charsheet .pips4{
+  display:grid;
+  grid-template-columns: repeat(4, 20px);
+  gap:8px;
+  align-items:center;
+}
+.charsheet .pip4{ width:20px; height:20px; display:inline-grid; place-items:center; }
+.charsheet .pip4 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip4 span{
+  width:20px; height:20px; border:1px solid var(--line); border-radius:50%;
+  background:rgba(255,255,255,.9); box-sizing:border-box;
+  transition:transform .05s ease-in-out;
+}
+.charsheet .pip4 input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color:var(--accent-dark);
+}
+.charsheet .pip4:hover span{ transform:scale(1.06); }
+
+/* Défaillance magique : cartouche de titre centré et assombri */
+.charsheet .magic-effects{
+  border-color: var(--accent-dark);
+}
+.charsheet .magic-effects .box-title{
+  text-align:center;
+  font-weight:900;
+  color:#fff;
+  background:linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border:2px solid var(--accent-dark);
+  border-radius:6px;
+  padding:6px 10px;
+  margin-bottom:8px;
+}
+
+/* Sorts : grille + toggle boutons compacts */
+.charsheet .magic-sorts .sorts-head{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto auto;
+  gap:8px; font-weight:700; color:var(--accent-dark);
+  margin-bottom:6px; border-bottom:1px solid var(--line); padding-bottom:4px;
+}
+.charsheet .magic-sorts .sorts-row{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto auto; /* espace suffisant pour les boutons */
+  gap:8px; align-items:center; margin:6px 0 4px;
+}
+.charsheet .togglebtn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:6px; padding:2px 8px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.7); cursor:pointer; user-select:none; white-space:nowrap;
+  font-size:12px; line-height:1;
+}
+.charsheet .togglebtn input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .togglebtn input:checked + span{
+  color:#fff; font-weight:800;
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark);
+  padding:1px 7px; border-radius:999px;
+}
+.charsheet .togglebtn span{ display:inline-block; }
+
+/* Sorts : textarea confortable (redimension manuel par l’utilisateur) */
+.charsheet .magic-sorts .sorts-effect{
+  display:grid; grid-template-columns:80px 1fr; gap:8px; align-items:start; margin:0 0 10px; padding:8px;
+  background:rgba(255,255,255,.25); border:1px solid var(--line); border-radius:4px;
+}
+.charsheet .magic-sorts .sorts-effect textarea.elastic-text{
+  width:100%; min-height:110px; resize:vertical;
+  background:var(--input-bg); border:1px solid var(--line); border-radius:4px; padding:6px 8px;
+  line-height:1.25; box-sizing:border-box;
+}
+
+/* Sécurité petits écrans : on réduit un peu les colonnes et la taille des boutons */
+@media (max-width: 980px){
+  .charsheet .magic-grid{ grid-template-columns: 1fr; } /* pile si très étroit */
+  .charsheet .magic-sorts .sorts-head,
+  .charsheet .magic-sorts .sorts-row{
+    grid-template-columns: 1.1fr 0.9fr 0.8fr 0.8fr auto auto;
+    gap:6px;
+  }
+  .charsheet .magic-params .rowline{ grid-template-columns: 180px 1fr; }
+  .charsheet .togglebtn{ font-size:11px; padding:2px 7px; }
+}
+/* ====== Magie : colonne de droite élargie, gauche inchangée ====== */
+.charsheet .magic-grid{
+  display:grid;
+  grid-template-columns: 0.75fr 1.25fr; /* gauche plus étroit, droite plus large */
+  grid-template-areas: "params effects";
+  gap:10px;
+}
+
+/* Colonne gauche (Paramètres) : on garde la taille mais bien plaqué à gauche */
+.charsheet .magic-params .magic-row{
+  display:flex; flex-direction:column; gap:10px;
+}
+.charsheet .magic-params .rowline{
+  display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center;
+  justify-self:start; /* bien calé à gauche */
+}
+.charsheet .magic-params .rowlabel{ font-weight:700; }
+
+/* Sous-blocs assombris (Niveau de mage, Réserve de défaillance magique) */
+.charsheet .magic-params .rowline.subbox{
+  border:2px solid var(--accent-dark);
+  background:linear-gradient(180deg, rgba(94,20,20,.15), rgba(94,20,20,.08)); /* plus sombre */
+  border-radius:6px;
+  padding:8px 10px;
+}
+
+/* Bouton Incantation (inchangé, rappel) */
+.charsheet .btn-pill{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+}
+.charsheet .btn-pill:hover{ filter:brightness(1.05); }
+
+/* Pips x4 (radios stylés) */
+.charsheet .pips4{ display:grid; grid-template-columns: repeat(4, 20px); gap:8px; align-items:center; }
+.charsheet .pip4{ width:20px; height:20px; display:inline-grid; place-items:center; }
+.charsheet .pip4 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip4 span{
+  width:20px; height:20px; border:1px solid var(--line); border-radius:50%;
+  background:rgba(255,255,255,.9); box-sizing:border-box; transition:transform .05s ease-in-out;
+}
+.charsheet .pip4 input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color:var(--accent-dark);
+}
+.charsheet .pip4:hover span{ transform:scale(1.06); }
+
+/* Défaillance magique (colonne droite) : cartouche de titre centré et assombri */
+.charsheet .magic-effects{ border-color: var(--accent-dark); }
+.charsheet .magic-effects .box-title{
+  text-align:center; font-weight:900; color:#fff;
+  background:linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border:2px solid var(--accent-dark); border-radius:6px;
+  padding:6px 10px; margin-bottom:8px;
+}
+
+/* Sorts : grille et groupe de boutons radio compacts */
+.charsheet .magic-sorts .sorts-head{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto; /* 5 colonnes, le groupe radio sera flex */
+  gap:8px; font-weight:700; color:var(--accent-dark);
+  margin-bottom:6px; border-bottom:1px solid var(--line); padding-bottom:4px;
+}
+.charsheet .magic-sorts .sorts-row{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto; /* la 5e colonne = .togglegroup */
+  gap:8px; align-items:center; margin:6px 0 4px;
+}
+
+/* Groupe radio (Formalisé / Mémorisé) */
+.charsheet .togglegroup{
+  display:inline-flex; align-items:center; gap:6px; justify-self:start; flex-wrap:wrap;
+}
+.charsheet .toggle-reset{ display:none; }
+
+.charsheet .togglebtn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:6px; padding:2px 8px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.7); cursor:pointer; user-select:none; white-space:nowrap;
+  font-size:12px; line-height:1;
+}
+.charsheet .togglebtn.small{ font-size:11px; padding:2px 7px; } /* plus étroit */
+.charsheet .togglebtn input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .togglebtn input:checked + span{
+  color:#fff; font-weight:800;
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark);
+  padding:1px 7px; border-radius:999px;
+}
+.charsheet .togglebtn span{ display:inline-block; }
+
+/* Zone effet (textarea) */
+.charsheet .magic-sorts .sorts-effect{
+  display:grid; grid-template-columns:80px 1fr; gap:8px; align-items:start; margin:0 0 10px; padding:8px;
+  background:rgba(255,255,255,.25); border:1px solid var(--line); border-radius:4px;
+}
+.charsheet .magic-sorts .sorts-effect textarea.elastic-text{
+  width:100%; min-height:110px; resize:vertical;
+  background:var(--input-bg); border:1px solid var(--line); border-radius:4px; padding:6px 8px;
+  line-height:1.25; box-sizing:border-box;
+}
+
+/* Petits écrans : pile si trop étroit */
+@media (max-width: 980px){
+  .charsheet .magic-grid{ grid-template-columns: 1fr; }
+  .charsheet .magic-params .rowline{ grid-template-columns: 180px 1fr; }
+  .charsheet .magic-sorts .sorts-head,
+  .charsheet .magic-sorts .sorts-row{
+    grid-template-columns: 1.1fr 0.9fr 0.8fr 0.8fr auto;
+    gap:6px;
+  }
+  .charsheet .togglebtn.small{ font-size:10.5px; padding:1px 6px; }
+}
+/* ==== Disposition Magie mise à jour ====
+   - Colonne gauche (paramètres) plaquée à gauche, largeur fixe (ajuste si besoin)
+   - Colonne droite (Défaillance magique) s'élargit et prend tout l'espace restant
+*/
+.charsheet .magic-grid{
+  display:grid;
+  grid-template-columns: 340px 1fr; /* ← ajuste 320–380px selon ton confort */
+  grid-template-areas: "params effects";
+  gap:10px;
+}
+
+/* Assure que la colonne gauche reste compacte et bien calée */
+.charsheet .magic-params{
+  justify-self:start;  /* colle à gauche */
+}
+.charsheet .magic-params .magic-row{
+  width:100%;
+}
+.charsheet .magic-params .rowline{
+  display:grid;
+  grid-template-columns: 220px 1fr; /* libellé + contenu, inchangé */
+  gap:10px;
+  align-items:center;
+}
+
+/* Colonne droite : s’étend naturellement */
+.charsheet .magic-effects{
+  width:100%;  /* prend tout l’espace disponible */
+}
+/* ====== MAGIE — anti-chevauchements & responsive solide ====== */
+
+/* Grille principale : gauche fixe (mais flexible) + droite fluide */
+.charsheet .magic-grid{
+  display:grid;
+  /* Colonne gauche garde sa densité sans écraser, colonne droite prend le reste */
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  grid-template-areas: "params effects";
+  gap:12px;
+}
+
+/* Empêcher tout overflow horizontal par défaut */
+.charsheet .magic-grid *{ min-width:0; }
+
+/* Colonne gauche bien calée et contenue */
+.charsheet .magic-params{ justify-self:start; width:100%; }
+.charsheet .magic-params .magic-row{ display:flex; flex-direction:column; gap:10px; }
+
+/* Chaque ligne paramètre : libellé + contenu, le contenu peut rétrécir */
+.charsheet .magic-params .rowline{
+  display:grid;
+  grid-template-columns: max-content minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+}
+.charsheet .magic-params .rowlabel{
+  font-weight:700; white-space:nowrap;
+}
+
+/* Sous-blocs assombris (niveau de mage / réserve) */
+.charsheet .magic-params .rowline.subbox{
+  border:2px solid var(--accent-dark);
+  background:linear-gradient(180deg, rgba(94,20,20,.15), rgba(94,20,20,.08));
+  border-radius:6px; padding:8px 10px;
+}
+
+/* Pips x4 : jamais de chevauchement */
+.charsheet .pips4{
+  display:grid; grid-template-columns: repeat(4, 22px);
+  gap:8px; align-items:center; justify-content:start;
+}
+.charsheet .pip4{ width:22px; height:22px; display:inline-grid; place-items:center; }
+.charsheet .pip4 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip4 span{
+  width:22px; height:22px; border:1px solid var(--line); border-radius:50%;
+  background:rgba(255,255,255,.9); box-sizing:border-box; transition:transform .05s;
+}
+.charsheet .pip4 input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark)); border-color:var(--accent-dark);
+}
+
+/* Bouton incantation : ne déborde pas */
+.charsheet .btn-pill{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+  max-width: 100%;
+}
+
+/* Colonne droite : s’étend proprement */
+.charsheet .magic-effects{ width:100%; }
+.charsheet .magic-effects .box-title{
+  text-align:center; font-weight:900; color:#fff;
+  background:linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border:2px solid var(--accent-dark); border-radius:6px;
+  padding:6px 10px; margin-bottom:8px;
+}
+
+/* ===== Sorts : anti-chevauchement dans l’en-tête et les lignes */
+.charsheet .magic-sorts .sorts-head{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto; /* la dernière colonne pour les toggles */
+  gap:8px; font-weight:700; color:var(--accent-dark);
+  margin-bottom:6px; border-bottom:1px solid var(--line); padding-bottom:4px;
+}
+.charsheet .magic-sorts .sorts-row{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto; /* champ "État" adaptable */
+  gap:8px; align-items:center; margin:6px 0 4px;
+}
+
+/* Inputs texte : autoriser la contraction pour éviter l’overflow */
+.charsheet .magic-sorts .sorts-row input[type="text"]{ min-width:0; }
+
+/* Groupe radio Form/Mémo : compact, se replie si besoin */
+.charsheet .togglegroup{
+  display:flex; flex-wrap:wrap; gap:6px;
+  align-items:center; justify-content:flex-start;
+  min-width:0; /* autorise le wrap */
+}
+.charsheet .toggle-reset{ display:none; }
+.charsheet .togglebtn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:6px; padding:2px 8px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.7); cursor:pointer; user-select:none; white-space:nowrap;
+  font-size:12px; line-height:1;
+  max-width:100%;
+}
+.charsheet .togglebtn.small{ font-size:11px; padding:2px 7px; }
+.charsheet .togglebtn input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .togglebtn input:checked + span{
+  color:#fff; font-weight:800;
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark);
+  padding:1px 7px; border-radius:999px;
+}
+.charsheet .togglebtn span{ display:inline-block; }
+
+/* Zone Effet : no overflow */
+.charsheet .magic-sorts .sorts-effect{
+  display:grid; grid-template-columns:80px minmax(0,1fr);
+  gap:8px; align-items:start; margin:0 0 10px; padding:8px;
+  background:rgba(255,255,255,.25); border:1px solid var(--line); border-radius:4px;
+}
+.charsheet .magic-sorts .sorts-effect textarea.elastic-text{
+  width:100%; min-height:110px; resize:vertical;
+  background:var(--input-bg); border:1px solid var(--line); border-radius:4px; padding:6px 8px;
+  line-height:1.25; box-sizing:border-box;
+}
+
+/* ===== Filets de sécurité responsive ===== */
+@media (max-width: 1100px){
+  .charsheet .magic-grid{
+    grid-template-columns: minmax(280px, 340px) minmax(0,1fr);
+  }
+}
+@media (max-width: 980px){
+  .charsheet .magic-grid{ grid-template-columns: 1fr; } /* pile, zéro chevauchement */
+  .charsheet .magic-params .rowline{ grid-template-columns: max-content minmax(0,1fr); }
+  .charsheet .magic-sorts .sorts-head,
+  .charsheet .magic-sorts .sorts-row{
+    grid-template-columns: 1.1fr 0.9fr 0.8fr 0.8fr auto;
+    gap:6px;
+  }
+  .charsheet .togglebtn.small{ font-size:10.5px; padding:1px 6px; }
+}
+@media (max-width: 720px){
+  /* Dans les petites largeurs, on passe Sorts sur 2 lignes pour éviter tout chevauchement */
+  .charsheet .magic-sorts .sorts-row{
+    grid-template-columns: 1fr 1fr; /* Nom + Cible sur la 1ère ligne, puis Portée + Durée + État en wrap */
+  }
+  .charsheet .togglegroup{ gap:5px; }
+  .charsheet .togglebtn.small{ font-size:10px; padding:1px 6px; }
+}
+/* ===== MAGIE : nouvelle disposition ===== */
+.charsheet .magic-grid{
+  display:grid;
+  grid-template-rows: auto auto; /* topbar puis effects */
+  gap:12px;
+}
+
+/* Topbar : 3 blocs sur une ligne, sans chevauchement */
+.charsheet .magic-topbar{
+  display:grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(180px, 0.8fr) minmax(260px, 1fr);
+  gap:12px;
+  align-items:center;
+}
+
+/* Boîtes de la topbar */
+.charsheet .magic-topbar .topbox{
+  background:rgba(255,255,255,.35);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:8px 10px;
+  display:grid;
+  grid-template-columns: max-content 1fr;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.charsheet .magic-topbar .subbox{
+  border:2px solid var(--accent-dark);
+  background:linear-gradient(180deg, rgba(94,20,20,.12), rgba(94,20,20,.06));
+}
+.charsheet .magic-topbar .rowlabel{
+  font-weight:800; white-space:nowrap;
+}
+
+/* Pips x4 (radios) */
+.charsheet .pips4{ display:grid; grid-template-columns: repeat(4, 22px); gap:8px; }
+.charsheet .pip4{ width:22px; height:22px; display:inline-grid; place-items:center; }
+.charsheet .pip4 input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .pip4 span{
+  width:22px; height:22px; border:1px solid var(--line); border-radius:50%;
+  background:rgba(255,255,255,.9);
+}
+.charsheet .pip4 input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark)); border-color:var(--accent-dark);
+}
+
+/* Bouton Incantation */
+.charsheet .btn-pill{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+  max-width:100%;
+}
+
+/* Défaillance magique (ligne du bas) */
+.charsheet .magic-effects .box-title{
+  text-align:center; font-weight:900; color:#fff;
+  background:linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border:2px solid var(--accent-dark); border-radius:6px;
+  padding:6px 10px; margin-bottom:8px;
+}
+
+/* Sorts : prévenir les chevauchements */
+.charsheet .magic-sorts .sorts-head{
+  display:grid; grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto;
+  gap:8px; font-weight:700; color:var(--accent-dark);
+  margin-bottom:6px; border-bottom:1px solid var(--line); padding-bottom:4px;
+}
+.charsheet .magic-sorts .sorts-row{
+  display:grid; grid-template-columns: 1.2fr 1fr 0.9fr 0.9fr auto;
+  gap:8px; align-items:center; margin:6px 0 4px;
+}
+.charsheet .magic-sorts .sorts-row input[type="text"]{ min-width:0; }
+
+/* Toggle group (Formalise/Memorise) */
+.charsheet .togglegroup{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.charsheet .toggle-reset{ display:none; }
+.charsheet .togglebtn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:2px 8px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.7); cursor:pointer; white-space:nowrap; font-size:12px;
+}
+.charsheet .togglebtn.small{ font-size:11px; padding:2px 7px; }
+.charsheet .togglebtn input{ position:absolute; opacity:0; width:0; height:0; }
+.charsheet .togglebtn input:checked + span{
+  color:#fff; font-weight:800; background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border:1px solid var(--accent-dark); padding:1px 7px; border-radius:999px;
+}
+
+/* Zone Effet (textarea) */
+.charsheet .magic-sorts .sorts-effect{
+  display:grid; grid-template-columns:80px minmax(0,1fr);
+  gap:8px; align-items:start; margin:0 0 10px; padding:8px;
+  background:rgba(255,255,255,.25); border:1px solid var(--line); border-radius:4px;
+}
+.charsheet .magic-sorts .sorts-effect textarea.elastic-text{
+  width:100%; min-height:110px; resize:vertical;
+  background:var(--input-bg); border:1px solid var(--line); border-radius:4px; padding:6px 8px; line-height:1.25;
+}
+
+/* Responsive : empiler proprement si la largeur manque */
+@media (max-width: 980px){
+  .charsheet .magic-topbar{
+    grid-template-columns: 1fr; /* empile les 3 blocs */
+  }
+}
+/* Ligne du haut : 3 blocs côte-à-côte */
+.charsheet .magic-row-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 colonnes égales */
+  gap: 12px;
+  align-items: center;
+}
+/* 3 blocs côte-à-côte */
+.charsheet .magic-row-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* Boîtes de la ligne du haut */
+.charsheet .magic-row-top .topbox {
+  background: rgba(255,255,255,.35);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Variante subbox = encadré accentué */
+.charsheet .magic-row-top .topbox.subbox {
+  border: 2px solid var(--accent-dark);
+  background: linear-gradient(180deg, rgba(94,20,20,.12), rgba(94,20,20,.06));
+}
+
+/* Variante vertical = label au-dessus, contenu dessous */
+.charsheet .magic-row-top .topbox.vertical .rowlabel {
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+/* Incantation centré sans label */
+.charsheet .magic-row-top .centerbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pips x4 sous le label */
+.charsheet .pips4 {
+  display: grid;
+  grid-template-columns: repeat(4, 22px);
+  gap: 8px;
+  justify-content: center;
+}
+.charsheet .pip4 span {
+  width: 22px; height: 22px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+}
+.charsheet .pip4 input:checked + span {
+  background: linear-gradient(180deg,var(--accent),var(--accent-dark));
+  border-color: var(--accent-dark);
+}
+/* Ancien en-tête supprimé */
+.charsheet .magic-sorts .sorts-head { display:none; }
+/* ===== NOTES — Journal ===== */
+.charsheet .journal-box{
+  padding:10px; background:rgba(255,255,255,.32);
+  border:2px solid var(--line); border-radius:6px;
+}
+.charsheet .journal-title{
+  font-weight:800; color:var(--accent-dark);
+  margin:0 0 8px; padding:6px 8px;
+  background:rgba(0,0,0,.05); border:1px solid var(--line); border-radius:4px;
+}
+.charsheet .journal-textarea{
+  width:100%;
+  min-height:160px;  /* hauteur de départ confortable */
+  max-height:none;   /* pas de limite haute */
+  resize:vertical;   /* l’utilisateur peut agrandir */
+  line-height:1.25;
+  background:var(--input-bg);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:8px 10px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+}
+/* === Boutons de compétences (remplacent le libellé de ligne) === */
+.charsheet .skill-btn{
+  appearance:none;
+  border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff;
+  border-radius:6px;
+  padding:4px 8px;
+  font-weight:800;
+  cursor:pointer;
+  width:100%;
+  text-align:left;
+  line-height:1.1;
+}
+.charsheet .skill-btn:hover{ filter:brightness(1.05); }
+.charsheet .skill-btn:active{ transform:translateY(1px); }
+/* === PROFIL : aligner les puces à droite de leur case === */
+.charsheet .profile-clusters .piprow .pips8,
+.charsheet .profile-clusters .progressrow .squares8{
+  justify-content: end;    /* pousse toute la grille de puces à droite */
+  justify-items: end;      /* et chaque puce colle bien à la droite de sa cellule */
+}
+
+/* petit espace de sécurité entre la colonne bouton/label et les puces */
+.charsheet .profile-clusters .piprow,
+.charsheet .profile-clusters .progressrow{
+  column-gap: 10px; /* était 6–8px selon tes blocs, on élargit juste un peu */
+}
+
+/* les boutons restent bien confinés dans la 1ère colonne */
+.charsheet .profile-clusters .piplabel > .btn-pill{
+  display:block;
+  width:100%;
+  max-width:100%;
+}
+/* === PROFIL : boutons de compétences occupent toute la largeur du label === */
+.charsheet .profile-clusters .piplabel button.skill-btn{
+  display:block;
+  width:100%;          /* bouton s’étend sur toute la largeur dispo */
+  max-width:100%;
+  text-align:left;      /* texte collé à gauche, lisible */
+  padding:4px 8px;      /* petit confort de lisibilité */
+  box-sizing:border-box;
+  white-space:nowrap;   /* garde tout le mot sur une ligne */
+  overflow:hidden;      /* évite le débordement */
+  text-overflow:ellipsis; /* si jamais un mot est vraiment trop long */
+}
+
+/* Optionnel : homogénéiser la hauteur pour que tout reste net */
+.charsheet .profile-clusters .piplabel{
+  flex:1; 
+}
+/* PATCH : élargir la colonne des noms de compétences */
+.charsheet .profile-clusters{
+  --label-col: 125px;  /* augmente un peu (120–135px recommandé) */
+}
+/* === PATCH MAGIE : Défaillance magique + Sorts sur toute la largeur === */
+.charsheet .magic-grid{
+  display: grid;
+  grid-template-rows: auto auto auto; /* topbar, défaillance, sorts */
+  grid-template-columns: 1fr;         /* une seule colonne */
+  gap: 12px;
+}
+
+/* Ligne du haut (topbar) reste en 3 colonnes */
+.charsheet .magic-row-top{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* Défaillance et Sorts = pleine largeur */
+.charsheet .magic-effects,
+.charsheet .magic-sorts{
+  grid-column: 1 / -1;  /* étend sur toute la grille */
+  width: 100%;
+}
+
+/* ===== MODE BAR PJ/PNJ ===== */
+.sheet-modebar{display:flex;gap:8px;margin:8px 0 12px;align-items:flex-end}
+.sheet-modebar input[type="radio"]{display:none}
+.sheet-tab{
+  padding:6px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;
+  background:#e6dfd2;font-weight:700;color:#4a3b2a;
+}
+#mode-pj:checked  + .sheet-tab{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#fff;border-color:var(--accent-dark)}
+#mode-pnj:checked + .sheet-tab{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#fff;border-color:var(--accent-dark)}
+
+/* ===== BASCULE DES VUES ===== */
+.sheet-mode-pj,.sheet-mode-pnj{display:none}
+#mode-pj:checked  ~ .sheet-mode-pj{display:block}
+#mode-pnj:checked ~ .sheet-mode-pnj{display:block}
+
+/* ===== STYLE PNJ (namespacé) ===== */
+.charsheet .sheet-npc{color:var(--ink);background:rgba(255,255,255,.28);border:1px solid var(--line);border-radius:6px;padding:14px}
+.sheet-npc-row{display:flex;gap:12px;align-items:end;margin:8px 0}
+.sheet-npc-row label{font-variant:small-caps;margin-right:6px}
+.sheet-npc-row input[type="text"],.sheet-npc-row input[type="number"],.sheet-npc-row select,.sheet-npc-block textarea{
+  background:var(--input-bg);border:1px solid var(--line);border-radius:4px;padding:6px 8px
+}
+.sheet-npc-block{margin:12px 0;padding:10px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.35)}
+.sheet-npc-title{font-weight:800;color:var(--accent-dark);margin-bottom:8px}
+.sheet-npc-grid8,.sheet-npc-grid3{display:grid;gap:6px}
+.sheet-npc-grid8{grid-template-columns:repeat(8,1fr)}
+.sheet-npc-grid3{grid-template-columns:repeat(3,1fr)}
+.sheet-npc-th{font-weight:700;text-align:center}
+.sheet-npc-vals input{text-align:center}
+.sheet-npc-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:900px){.sheet-npc-two{grid-template-columns:1fr}}
+
+/* Compétences PNJ */
+.sheet-npc-skillopts{display:flex;gap:16px;flex-wrap:wrap;align-items:end;margin-bottom:8px}
+.sheet-npc-skillrow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.sheet-npc-skillname{position:relative}
+.sheet-npc-skillname input[name="attr_npc_skill_name"]{width:100%;font-weight:600}
+.sheet-npc-rollbtn{position:absolute;inset:0;opacity:0}
+.sheet-npc-skillval{display:flex;gap:8px;align-items:center}
+.sheet-npc-skillval input[type="text"]{width:100px}
+
+/* Type -> Wounds visible pour Brute/Champion (structure: radios puis bloc) */
+.sheet-npc-typewrap .sheet-npc-wounds{display:none}
+.sheet-npc-typewrap input[value="brute"]:checked ~ .sheet-npc-wounds,
+.sheet-npc-typewrap input[value="champion"]:checked ~ .sheet-npc-wounds{display:block}
+.sheet-npc-type{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.sheet-npc-type span{font-size:.9rem;color:var(--muted)}
+/* cacher les radios */
+#mode-pj, #mode-pnj { display:none; }
+
+/* style de la barre */
+.sheet-modebar{display:flex;gap:8px;margin:8px 0 12px;align-items:flex-end}
+.sheet-tab{
+  padding:6px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;
+  background:#e6dfd2;font-weight:700;color:#4a3b2a;
+}
+
+/* onglet actif (les labels sont dans .sheet-modebar) */
+#mode-pj:checked  ~ .sheet-modebar label[for="mode-pj"],
+#mode-pnj:checked ~ .sheet-modebar label[for="mode-pnj"]{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff;border-color:var(--accent-dark);
+}
+
+/* affichage des vues */
+.sheet-mode-pj, .sheet-mode-pnj{display:none}
+#mode-pj:checked  ~ .sheet-mode-pj{display:block}
+#mode-pnj:checked ~ .sheet-mode-pnj{display:block}
+
+/* Affichage de l’onglet PNJ */
+#tab-pnj:checked ~ .pages .page-pnj{ display:block; }
+
+/* ====== PNJ : structure ====== */
+.sheet-mode-pnj .sheet-npc-row{ display:grid; grid-template-columns:120px 1fr; gap:8px; align-items:center; }
+.sheet-mode-pnj .sheet-npc-block{
+  background:rgba(255,255,255,.32); border:1px solid var(--line);
+  border-radius:6px; padding:10px; display:flex; flex-direction:column; gap:8px;
+}
+.sheet-mode-pnj .sheet-npc-title{
+  font-weight:800; color:#fff; background:linear-gradient(180deg,#7f2626,#5e1414);
+  border:1px solid #3b0e0e; border-left:4px solid var(--gold); padding:4px 8px; border-radius:4px;
+}
+.sheet-mode-pnj .sheet-npc-grid8{ display:grid; grid-template-columns:repeat(8,1fr); gap:6px; }
+.sheet-mode-pnj .sheet-npc-grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.sheet-mode-pnj .sheet-npc-th{ font-weight:700; color:var(--accent-dark); }
+
+.sheet-mode-pnj .sheet-npc-options{ grid-template-columns: 1fr 1fr 1fr; }
+
+.sheet-mode-pnj .sheet-npc-skillopts{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.sheet-mode-pnj .sheet-npc-skillrow{ display:grid; grid-template-columns:1.4fr 0.6fr auto; gap:8px; align-items:center; }
+.sheet-mode-pnj .sheet-npc-skillroll{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* Switch manuel Seuils */
+.sheet-mode-pnj .sheet-chip{ display:inline-flex; gap:8px; align-items:center; margin:4px 0; }
+.sheet-mode-pnj .sheet-chip input{ position:absolute; opacity:0; width:0; height:0; }
+.sheet-mode-pnj .sheet-chip span{
+  padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.9); font-weight:700;
+}
+.sheet-mode-pnj .sheet-chip input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark)); color:#fff; border-color:var(--accent-dark);
+}
+
+/* Seuils PLEINE LARGEUR + masquage sans sheet-worker */
+.sheet-mode-pnj .sheet-npc-wounds{ display:none; width:100%; }
+.sheet-mode-pnj input[name="attr_npc_wounds_on"]:checked ~ .sheet-npc-wounds{ display:block; }
+
+/* Deux colonnes Notes/Équipement */
+.sheet-mode-pnj .sheet-npc-two{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width:900px){ .sheet-mode-pnj .sheet-npc-two{ grid-template-columns:1fr; } }
+
+/* Affichage de l’onglet PNJ */
+#tab-pnj:checked ~ .pages .page-pnj{ display:block; }
+
+/* ====== PNJ : structure ====== */
+.sheet-mode-pnj .sheet-npc-row{ display:grid; grid-template-columns:120px 1fr; gap:8px; align-items:center; }
+.sheet-mode-pnj .sheet-npc-block{
+  background:rgba(255,255,255,.32); border:1px solid var(--line);
+  border-radius:6px; padding:10px; display:flex; flex-direction:column; gap:8px;
+}
+.sheet-mode-pnj .sheet-npc-title{
+  font-weight:800; color:#fff; background:linear-gradient(180deg,#7f2626,#5e1414);
+  border:1px solid #3b0e0e; border-left:4px solid var(--gold); padding:4px 8px; border-radius:4px;
+}
+.sheet-mode-pnj .sheet-npc-grid8{ display:grid; grid-template-columns:repeat(8,1fr); gap:6px; }
+.sheet-mode-pnj .sheet-npc-grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.sheet-mode-pnj .sheet-npc-th{ font-weight:700; color:var(--accent-dark); }
+
+.sheet-mode-pnj .sheet-npc-options{ grid-template-columns: 1fr 1fr 1fr; }
+
+.sheet-mode-pnj .sheet-npc-skillopts{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.sheet-mode-pnj .sheet-npc-skillrow{ display:grid; grid-template-columns:1.4fr 0.6fr auto; gap:8px; align-items:center; }
+.sheet-mode-pnj .sheet-npc-skillroll{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* Switch manuel Seuils */
+.sheet-mode-pnj .sheet-chip{ display:inline-flex; gap:8px; align-items:center; margin:4px 0; }
+.sheet-mode-pnj .sheet-chip input{ position:absolute; opacity:0; width:0; height:0; }
+.sheet-mode-pnj .sheet-chip span{
+  padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.9); font-weight:700;
+}
+.sheet-mode-pnj .sheet-chip input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark)); color:#fff; border-color:var(--accent-dark);
+}
+
+/* Seuils PLEINE LARGEUR + masquage sans sheet-worker */
+.sheet-mode-pnj .sheet-npc-wounds{ display:none; width:100%; }
+.sheet-mode-pnj input[name="attr_npc_wounds_on"]:checked ~ .sheet-npc-wounds{ display:block; }
+
+/* Deux colonnes Notes/Équipement */
+.sheet-mode-pnj .sheet-npc-two{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width:900px){ .sheet-mode-pnj .sheet-npc-two{ grid-template-columns:1fr; } }
+/* === PNJ — Activer l’onglet & la page === */
+#tab-pnj:checked ~ .tabs label[for="tab-pnj"]{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff;border-color:var(--accent-dark);
+}
+#tab-pnj:checked ~ .pages .page-pnj{ display:block; }
+
+/* ====== PNJ : structure & styles ====== */
+.page-pnj .sheet-npc-row{ display:grid; grid-template-columns:120px 1fr; gap:8px; align-items:center; }
+.page-pnj .sheet-npc-block{
+  background:rgba(255,255,255,.32); border:1px solid var(--line);
+  border-radius:6px; padding:10px; display:flex; flex-direction:column; gap:8px;
+}
+.page-pnj .sheet-npc-title{
+  font-weight:800; color:#fff; background:linear-gradient(180deg,#7f2626,#5e1414);
+  border:1px solid #3b0e0e; border-left:4px solid var(--gold); padding:4px 8px; border-radius:4px;
+}
+.page-pnj .sheet-npc-grid8{ display:grid; grid-template-columns:repeat(8,1fr); gap:6px; }
+.page-pnj .sheet-npc-grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.page-pnj .sheet-npc-th{ font-weight:700; color:var(--accent-dark); }
+.page-pnj .sheet-npc-options{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+
+.page-pnj .sheet-chip{ display:inline-flex; gap:8px; align-items:center; }
+.page-pnj .sheet-chip input{ position:absolute; opacity:0; width:0; height:0; }
+.page-pnj .sheet-chip span{
+  padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.9); font-weight:700;
+}
+.page-pnj .sheet-chip input:checked + span{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark)); color:#fff; border-color:var(--accent-dark);
+}
+
+/* Seuils de Blessures (pleine largeur) : masqué tant que non activé */
+.page-pnj .sheet-npc-wounds{ display:none; }
+.page-pnj input[name="attr_npc_wounds_on"]:checked ~ .sheet-npc-wounds{ display:block; width:100%; }
+
+.page-pnj .sheet-npc-skillopts{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.page-pnj .sheet-npc-skillrow{ display:grid; grid-template-columns:1.4fr 0.6fr auto; gap:8px; align-items:center; }
+.page-pnj .sheet-npc-skillroll{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:6px 12px; font-weight:800; cursor:pointer;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* Notes / Équipement sur 2 colonnes (1 sur mobile) */
+.page-pnj .sheet-npc-two{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width:900px){ .page-pnj .sheet-npc-two{ grid-template-columns:1fr; } }
+.charsheet .modebar{ display:none; }
+/* Afficher la barre (tu avais un display:none à retirer) */
+.charsheet .modebar{
+  display:flex; gap:8px; align-items:center; margin:6px 0 10px;
+}
+
+/* Par défaut : on voit les onglets PJ ; la page PNJ est cachée */
+.page-pnj{ display:none; }
+
+/* Quand l’attribut = pnj : on cache les onglets PJ et on montre la page PNJ */
+.mode-anchor[value="pnj"] ~ .tabs  { display:none; }
+.mode-anchor[value="pnj"] ~ .pages { display:none; }
+.mode-anchor[value="pnj"] ~ .page-pnj { display:block; }
+
+/* Radios de mode invisibles */
+.mode-toggle{ display:none; }
+
+/* Mode PNJ : on cache les onglets PJ et on affiche la page PNJ */
+#mode-pnj:checked ~ .tabs  { display:none; }
+#mode-pnj:checked ~ .pages { display:none; }
+#mode-pnj:checked ~ .page-pnj { display:block; }
+
+/* Par défaut */
+.page-pnj{ display:none; }
+
+/* Afficher la barre si elle avait été masquée */
+.modebar{ display:flex; gap:8px; align-items:center; margin:6px 0 10px; }
+/* ====== Barre de mode PJ / PNJ — style "pill" ====== */
+.mode-toggle{ display:none; } /* on cache les vrais radios */
+
+.modebar{
+  display:flex; align-items:center; gap:10px;
+  margin:0 0 12px; padding:6px;
+  background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
+  border:1px solid var(--line);
+  border-radius:999px;
+  box-shadow:0 2px 6px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.modebar-label{
+  font-weight:900; text-transform:uppercase; letter-spacing:.03em;
+  color:#4a3b2a; opacity:.9; padding:0 8px 0 6px;
+  border-right:1px dashed var(--line);
+}
+
+.modechip{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 14px; border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.85);
+  color:var(--ink); font-weight:800; cursor:pointer; user-select:none;
+  transition:transform .06s ease, box-shadow .18s ease, filter .18s ease, background .18s ease, border-color .18s ease;
+}
+.modechip:hover{ transform:translateY(-1px); filter:brightness(1.03); }
+.modechip:active{ transform:translateY(0); }
+.modechip:focus-within{ box-shadow:0 0 0 3px rgba(196,165,103,.35); outline:none; }
+
+/* Petites icônes (facultatif) */
+.modechip::before{ font-size:14px; line-height:1; }
+.modebar label[for="mode-pj"]::before{ content:'️'; }
+.modebar label[for="mode-pnj"]::before{ content:''; }
+
+/* État sélectionné (radio :checked) */
+#mode-pj:checked  ~ .modebar label[for="mode-pj"],
+#mode-pnj:checked ~ .modebar label[for="mode-pnj"]{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff;
+  border-color:var(--accent-dark);
+  box-shadow:0 2px 6px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+/* Option responsive : cacher "Mode :" sur petits écrans */
+@media (max-width: 520px){
+  .modebar-label{ display:none; }
+}
+/* ===== PNJ — Mode compact (densifie sans toucher au PJ) ===== */
+.page-pnj{
+  --pnj-font:12px;
+  --pnj-gap:6px;
+  --pnj-pad:6px;
+  --pnj-chip-pad:2px 6px;
+  --pnj-input-pad:4px 6px;
+  --pnj-radius:6px;
+}
+
+/* Sections PNJ plus serrées */
+.page-pnj .sheet-section{ margin:8px 0 10px; padding:8px; border-left-width:3px; }
+
+/* Blocs PNJ */
+.page-pnj .sheet-npc-block{ padding:var(--pnj-pad); gap:var(--pnj-gap); border-radius:var(--pnj-radius); }
+.page-pnj .sheet-npc-title{ padding:3px 6px; font-size:13px; }
+
+/* Typo + champs réduits */
+.page-pnj, .page-pnj label, .page-pnj .sheet-npc-th{ font-size:var(--pnj-font); }
+.page-pnj input[type="text"],
+.page-pnj input[type="number"],
+.page-pnj select,
+.page-pnj textarea{
+  padding:var(--pnj-input-pad);
+  font-size:var(--pnj-font);
+  border-radius:var(--pnj-radius);
+  min-height:26px;
+}
+
+/* Rangs / grilles plus compacts */
+.page-pnj .sheet-npc-row{ grid-template-columns:100px 1fr; gap:6px; }
+.page-pnj .sheet-npc-grid8{ gap:4px; }
+.page-pnj .sheet-npc-grid3{ gap:6px; }
+
+/* Pastilles / choix compacts */
+.page-pnj .sheet-chip span{
+  padding:var(--pnj-chip-pad);
+  border-radius:999px;
+}
+
+/* Ligne compétence PNJ (Nom | Code XdY | Bouton) */
+.page-pnj .sheet-npc-skillrow{
+  grid-template-columns: 1fr 90px 110px; /* ajuste si besoin */
+  gap:6px; align-items:center;
+}
+.page-pnj .sheet-npc-skillrow input[name^="attr_npc_skill_code"]{ text-align:center; }
+
+/* Bouton de jet plus petit */
+.page-pnj .sheet-npc-skillroll{
+  padding:4px 10px; font-size:12px; border-radius:999px;
+}
+
+/* Seuils de Blessures + Notes/Équipement : gaps réduits */
+.page-pnj .sheet-npc-wounds{ margin-top:6px; }
+.page-pnj .sheet-npc-two{ gap:8px; }
+.page-pnj textarea{ min-height:70px; }
+
+/* En-têtes/encadrés allégés dans la page PNJ uniquement */
+.page-pnj .encadre{ padding:8px; }
+/* ===== PNJ — Titres & chapitres compacts ===== */
+.page-pnj{
+  --pnj-h1:16px;      /* Titre principal PNJ */
+  --pnj-h2:13px;      /* Sous-titres de sections */
+  --pnj-title-pad:4px 6px;
+  --pnj-sec-margin:8px;   /* marge verticale des sections */
+  --pnj-sec-pad:8px;      /* padding interne des sections */
+}
+
+/* Titre principal de la page PNJ */
+.page-pnj h1{
+  font-size:var(--pnj-h1);
+  padding:var(--pnj-title-pad);
+  margin:6px 0;
+  border-left-width:3px;
+  text-shadow:none;
+  letter-spacing:.01em;
+}
+
+/* Titres de sections (Identité, Caractéristiques, Paramètres, etc.) */
+.page-pnj h2{
+  font-size:var(--pnj-h2);
+  padding:var(--pnj-title-pad);
+  margin:6px 0;
+  border-left-width:3px;
+  text-shadow:none;
+}
+
+/* Cartouches/titres internes (ex: “Seuils de blessure”, “Notes”, etc.) */
+.page-pnj .box-title,
+.page-pnj .param-title,
+.page-pnj .sheet-npc-title{
+  font-size:12px;
+  padding:3px 6px;
+  border-radius:4px;
+}
+
+/* Sections PNJ plus serrées globalement */
+.page-pnj .sheet-section{
+  margin:var(--pnj-sec-margin) 0;
+  padding:var(--pnj-sec-pad);
+  border-left-width:3px;
+}
+
+/* Encadrés au sein de la page PNJ */
+.page-pnj .encadre{ padding:8px; }
+
+/* Grilles et lignes PNJ un peu plus denses (complément du mode compact précédent) */
+.page-pnj .sheet-npc-row{ grid-template-columns:92px 1fr; gap:6px; }
+.page-pnj .sheet-npc-grid8{ gap:4px; }
+.page-pnj .sheet-npc-grid3{ gap:6px; }
+
+/* Champs & boutons légèrement réduits */
+.page-pnj input[type="text"],
+.page-pnj input[type="number"],
+.page-pnj select,
+.page-pnj textarea{ padding:4px 6px; min-height:26px; font-size:12px; }
+.page-pnj .sheet-npc-skillroll{ padding:4px 10px; font-size:12px; }
+
+/* Pastilles/choix plus fins */
+.page-pnj .sheet-chip span{ padding:2px 6px; }
+
+/* Notes/Équipement : gaps serrés */
+.page-pnj .sheet-npc-two{ gap:8px; }
+.page-pnj textarea{ min-height:68px; }
+/* ===== PNJ — Encadré façon livre ===== */
+.page-pnj .npc-card{
+  background:
+    radial-gradient(ellipse at top left,rgba(255,255,255,.25),rgba(0,0,0,0) 60%),
+    radial-gradient(ellipse at bottom right,rgba(0,0,0,.05),rgba(0,0,0,0) 60%),
+    var(--parchment-url);
+  background-size:cover;
+  border:1px solid var(--line);
+  border-radius:6px;
+  box-shadow:0 1px 6px rgba(0,0,0,.15);
+  padding:10px;
+  display:flex; flex-direction:column; gap:10px;
+}
+
+/* Bande rouge de chapitre */
+.page-pnj .npc-band{
+  font-weight:900; color:#fff;
+  background:linear-gradient(180deg,#7f2626,#5e1414);
+  border:1px solid #3b0e0e; border-left:4px solid var(--gold);
+  padding:4px 8px; border-radius:4px; letter-spacing:.02em; text-transform:uppercase;
+}
+
+/* Ligne Nom */
+.page-pnj .npc-name label{ display:grid; grid-template-columns:80px 1fr; gap:8px; align-items:center; }
+.page-pnj .npc-name input[type="text"]{ width:100%; }
+
+/* Tableau caracs : 8 colonnes sur 2 lignes */
+.page-pnj .npc-table{ border:1px solid var(--line); border-radius:6px; background:rgba(255,255,255,.35); padding:8px; }
+.page-pnj .npc-table .row{ display:grid; grid-template-columns:repeat(8,1fr); gap:6px; }
+.page-pnj .npc-table .row.head > div{
+  text-align:center; font-weight:800; color:var(--accent-dark);
+  background:rgba(255,255,255,.6); border:1px solid var(--line); border-radius:4px; padding:4px 0;
+}
+.page-pnj .npc-table .row.vals input{
+  text-align:center; min-width:0;
+  padding:4px 6px; border-radius:4px;
+}
+
+/* Ligne Speed/Resilience/Type */
+.page-pnj .npc-table .row.meta{ grid-template-columns:repeat(3,1fr); margin-top:8px; }
+.page-pnj .npc-table .mi{ display:grid; grid-template-columns:90px 1fr; gap:6px; align-items:center; }
+.page-pnj .npc-table .mi-lab{
+  font-weight:800; color:#fff; background:linear-gradient(180deg,#7f2626,#5e1414);
+  border:1px solid #3b0e0e; border-left:4px solid var(--gold); border-radius:4px; padding:2px 6px;
+}
+
+/* Seuils de blessure : 3 colonnes */
+.page-pnj .npc-wounds{ border:1px solid var(--line); border-radius:6px; background:rgba(255,255,255,.28); padding:8px; }
+.page-pnj .npc-wounds .w-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+.page-pnj .npc-wounds .w-col{ display:flex; flex-direction:column; gap:6px; }
+.page-pnj .npc-wounds .w-head{
+  display:flex; gap:6px; align-items:center; font-weight:800; color:var(--accent-dark);
+}
+.page-pnj .npc-wounds .w-foot{ margin-top:6px; font-size:12px; color:var(--muted); }
+
+/* Affichage conditionnel des Seuils (masqué pour Champion) */
+.page-pnj .npc-wounds{ display:none; }
+.page-pnj select[name="attr_npc_type"][value="larbin"]        ~ .npc-wounds,
+.page-pnj select[name="attr_npc_type"][value="brute"]         ~ .npc-wounds,
+.page-pnj select[name="attr_npc_type"][value="monstruosite"]  ~ .npc-wounds{
+  display:block;
+}
+
+/* Textes façon encadré du livre */
+.page-pnj .npc-text{
+  width:100%; min-height:70px; resize:vertical;
+}
+
+/* Jets rapides compacts */
+.page-pnj .npc-quick{ border:1px solid var(--line); border-radius:6px; background:rgba(255,255,255,.28); padding:8px; }
+.page-pnj .npc-quick .repcontainer .repitem,
+.page-pnj .npc-quick fieldset{ display:grid; grid-template-columns:1.2fr 120px 90px; gap:8px; align-items:center; }
+.page-pnj .npc-quick input[type="text"]{ min-width:0; }
+.page-pnj .npc-roll{
+  appearance:none; border:1px solid var(--accent-dark);
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border-radius:999px; padding:4px 10px; font-weight:800; cursor:pointer;
+}
+
+/* 2 colonnes Notes/Équipement */
+.page-pnj .npc-two{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.page-pnj .npc-two .small-title{ font-weight:800; color:var(--accent-dark); margin-bottom:4px; }
+@media (max-width:900px){ .page-pnj .npc-two{ grid-template-columns:1fr; } }
+
+/* Compact général PNJ */
+.page-pnj .sheet-section{ margin:8px 0 10px; padding:8px; }
+.page-pnj input, .page-pnj select, .page-pnj textarea{ font-size:12px; padding:4px 6px; }
+/* === PNJ — Alignement parfait des caracs & paramètres === */
+
+/* Grille caracs : 8 colonnes fixes, identiques pour head + vals */
+.page-pnj .npc-caracs-head,
+.page-pnj .npc-caracs-vals{
+  display:grid;
+  grid-template-columns: repeat(8, 56px); /* même largeur partout */
+  gap:6px;
+  justify-content:start;
+  align-items:center;
+}
+.page-pnj .npc-caracs-head > div{
+  text-align:center; font-weight:700; color:var(--accent-dark);
+}
+.page-pnj .npc-caracs-vals .carac{
+  width:56px; text-align:center; padding:3px 4px; box-sizing:border-box;
+}
+
+/* Ligne paramètres : 3 colonnes égales, inputs full-width */
+.page-pnj .npc-params{
+  display:grid; grid-template-columns: 1fr 1fr 1fr;
+  gap:10px; align-items:end; margin-top:8px;
+}
+.page-pnj .npc-params .mi{ display:flex; flex-direction:column; gap:4px; }
+.page-pnj .npc-params .mi .mi-lab{
+  font-weight:800; color:#fff;
+  background:linear-gradient(180deg,#7f2626,#5e1414);
+  border:1px solid #3b0e0e; border-left:4px solid var(--gold);
+  border-radius:4px; padding:2px 6px;
+}
+.page-pnj .npc-params select,
+.page-pnj .npc-params input[type="number"]{
+  width:100%; min-width:0;
+}
+
+/* Jets rapides : ligne compacte & fiable */
+.npcquick-row{
+  display:grid; grid-template-columns:1.2fr 0.7fr auto; gap:8px; align-items:center;
+}
+.repeating_npcquick input[type="text"]{ min-width:0; }
+.repeating_npcquick .btn-pill{ white-space:nowrap; }
+

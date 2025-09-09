@@ -1,0 +1,1217 @@
+<!-- =======================
+  WARHAMMER OLD WORLD (FR)
+  Fiche multi-onglets : Personnage / Magie / Notes + Mode PNJ
+========================= -->
+<div class="sheet-wrapper">
+
+  <!-- Radios de mode (FRÈRES de .tabs/.pages/.page-pnj) -->
+  <input type="radio" name="attr_mode_feuille" id="mode-pj"  class="mode-toggle" value="pj"  checked>
+  <input type="radio" name="attr_mode_feuille" id="mode-pnj" class="mode-toggle" value="pnj">
+
+  <!-- Barre de mode PJ / PNJ -->
+  <div class="modebar">
+    <span class="modebar-label">Mode :</span>
+    <label class="modechip" for="mode-pj"><span>PJ</span></label>
+    <label class="modechip" for="mode-pnj"><span>PNJ</span></label>
+  </div>
+
+  <!-- ================= Onglets PJ existants ================= -->
+  <input type="radio" name="sheet_tab" id="tab-personnage" class="tab-toggle" value="personnage" checked>
+  <input type="radio" name="sheet_tab" id="tab-magie" class="tab-toggle" value="magie">
+  <input type="radio" name="sheet_tab" id="tab-notes" class="tab-toggle" value="notes">
+
+  <div class="tabs">
+    <label for="tab-personnage" class="tab">Personnage</label>
+    <label for="tab-magie" class="tab">Magie</label>
+    <label for="tab-notes" class="tab">Notes</label>
+  </div>
+
+  <div class="pages">
+    <!-- ==================== PAGE 1 — PERSONNAGE ==================== -->
+    <div class="page page-personnage">
+      <h1>Fiche de Personnage</h1>
+
+      <!-- ========= Identité (EN LIGNE) ========= -->
+      <div class="sheet-section">
+        <h2>Identité</h2>
+        <div class="identity-grid one-line">
+          <label>Nom <input type="text" name="attr_nom"></label>
+          <label>Origine <input type="text" name="attr_origine"></label>
+          <label>Carrière <input type="text" name="attr_carriere"></label>
+        </div>
+      </div>
+
+      <!-- ========= Paramètres ========= -->
+      <div class="sheet-section">
+        <h2>Paramètres</h2>
+        <div class="params-grid">
+          <!-- Colonne gauche : Statut & Pièces -->
+          <div class="param-card">
+            <div class="param-title">Statut & Pièces</div>
+
+            <label>Statut
+              <select name="attr_statut_piece">
+                <option value="cuivre">Cuivre</option>
+                <option value="argent">Argent</option>
+                <option value="or">Or</option>
+              </select>
+            </label>
+
+            <div class="piprow tight">
+              <span class="piplabel">Cuivre</span>
+              <div class="pips coin-pips">
+                <label class="pip"><input type="checkbox" name="attr_cuivre1"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_cuivre2"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_cuivre3"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_cuivre4"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_cuivre5"><span></span></label>
+              </div>
+            </div>
+            <div class="piprow tight">
+              <span class="piplabel">Argent</span>
+              <div class="pips coin-pips">
+                <label class="pip"><input type="checkbox" name="attr_argent1"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_argent2"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_argent3"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_argent4"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_argent5"><span></span></label>
+              </div>
+            </div>
+            <div class="piprow tight">
+              <span class="piplabel">Or</span>
+              <div class="pips coin-pips">
+                <label class="pip"><input type="checkbox" name="attr_or1"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_or2"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_or3"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_or4"><span></span></label>
+                <label class="pip"><input type="checkbox" name="attr_or5"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Colonne droite -->
+          <div class="param-stack">
+            <div class="param-card">
+              <div class="param-title">Vitesse</div>
+              <label>Mode
+                <select name="attr_vitesse_mode">
+                  <option value="lent">Lent</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="rapide">Rapide</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="param-card">
+              <div class="param-title">Destin</div>
+              <div class="piprow">
+                <span class="piplabel">Points</span>
+                <div class="pips coin-pips">
+                  <label class="pip"><input type="checkbox" name="attr_destin1"><span></span></label>
+                  <label class="pip"><input type="checkbox" name="attr_destin2"><span></span></label>
+                  <label class="pip"><input type="checkbox" name="attr_destin3"><span></span></label>
+                  <label class="pip"><input type="checkbox" name="attr_destin4"><span></span></label>
+                  <label class="pip"><input type="checkbox" name="attr_destin5"><span></span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="param-card">
+              <div class="param-title">Expérience</div>
+              <div class="xp-row">
+                <label>Réserve <input type="number" name="attr_xp_reserve" min="0" step="1"></label>
+                <label>Dépensé <input type="number" name="attr_xp_depense" min="0" step="1"></label>
+                <label>Total   <input type="number" name="attr_xp_total"   min="0" step="1"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PROFIL ==================== -->
+      <!-- (bloc original conservé) -->
+      <div class="sheet-section">
+        <h2>Profil</h2>
+
+        <div class="clusters-grid profile-clusters">
+          <!-- ===== CC — Corps à corps ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Corps à corps
+              <label class="cluster-flag" title="Activer/désactiver">
+                <input type="checkbox" name="attr_cc_flag"><span class="flag-box"></span>
+              </label>
+            </div>
+            <input type="hidden" name="attr_cc">
+            <input type="hidden" name="attr_melee">
+            <input type="hidden" name="attr_defense">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_cc_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_cc_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_cc_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_cc_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_cc_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_cc_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_cc_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_cc_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_melee"
+      value="!an7d --cid @{character_id} --carac cc --skill melee --label Mêlée --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Mêlée</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_melee_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_melee_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_melee_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_melee_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_melee_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_melee_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_melee_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_melee_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_melee_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_defense"
+      value="!an7d --cid @{character_id} --carac cc --skill defense --label Défense --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Défense</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_defense_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_defense_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_defense_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_defense_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_defense_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_defense_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_defense_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_defense_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_defense_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== CT — Capacité de tir ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Capacité de tir
+              <label class="cluster-flag" title="Activer/désactiver">
+                <input type="checkbox" name="attr_ct_flag"><span class="flag-box"></span>
+              </label>
+            </div>
+            <input type="hidden" name="attr_ct">
+            <input type="hidden" name="attr_tir">
+            <input type="hidden" name="attr_lancer">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_ct_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ct_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ct_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ct_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ct_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ct_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ct_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ct_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_tir"
+      value="!an7d --cid @{character_id} --carac ct --skill tir --label Tir --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Tir</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_tir_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_tir_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_tir_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_tir_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_tir_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_tir_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_tir_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_tir_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_tir_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_lancer"
+      value="!an7d --cid @{character_id} --carac ct --skill lancer --label Lancer --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Lancer</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_lancer_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_lancer_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== F — Force ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Force
+              <label class="cluster-flag"><input type="checkbox" name="attr_f_flag"><span class="flag-box"></span></label>
+            </div>
+            <input type="hidden" name="attr_f">
+            <input type="hidden" name="attr_puissance">
+            <input type="hidden" name="attr_labeur">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_f_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_f_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_f_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_f_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_f_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_f_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_f_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_f_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_puissance"
+      value="!an7d --cid @{character_id} --carac ct --skill puissance --label Puissance --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Puissance</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_puissance_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_puissance_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_labeur"
+      value="!an7d --cid @{character_id} --carac ct --skill labeur --label Labeur --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Labeur</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_labeur_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_labeur_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== E — Endurance ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Endurance
+              <label class="cluster-flag"><input type="checkbox" name="attr_e_flag"><span class="flag-box"></span></label>
+            </div>
+            <input type="hidden" name="attr_e">
+            <input type="hidden" name="attr_survie">
+            <input type="hidden" name="attr_resistance">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_e_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_e_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_e_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_e_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_e_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_e_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_e_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_e_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_survie"
+      value="!an7d --cid @{character_id} --carac ct --skill survie --label Survie --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Survie</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_survie_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_survie_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_survie_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_survie_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_survie_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_survie_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_survie_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_survie_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_survie_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_resistance"
+      value="!an7d --cid @{character_id} --carac ct --skill resistance --label Résistance --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Résistance</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_resistance_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_resistance_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== I — Initiative ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Initiative
+              <label class="cluster-flag"><input type="checkbox" name="attr_i_flag"><span class="flag-box"></span></label>
+            </div>
+            <input type="hidden" name="attr_i">
+            <input type="hidden" name="attr_perception">
+            <input type="hidden" name="attr_dexterite">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_i_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_i_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_i_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_i_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_i_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_i_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_i_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_i_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_perception"
+      value="!an7d --cid @{character_id} --carac ct --skill perception --label Perception --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Perception</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_perception_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_perception_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_perception_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_perception_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_perception_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_perception_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_perception_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_perception_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_perception_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_dexterite"
+      value="!an7d --cid @{character_id} --carac ct --skill dexterite --label Dextérité --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Dextérité</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_dexterite_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_dexterite_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Ag — Agilité ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Agilité
+              <label class="cluster-flag"><input type="checkbox" name="attr_ag_flag"><span class="flag-box"></span></label>
+            </div>
+            <input type="hidden" name="attr_ag">
+            <input type="hidden" name="attr_athletisme">
+            <input type="hidden" name="attr_discretion">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_ag_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ag_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ag_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ag_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ag_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ag_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ag_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ag_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_athletisme"
+      value="!an7d --cid @{character_id} --carac ct --skill athletisme --label Athlétisme --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Athlétisme</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_athletisme_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_athletisme_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_discretion"
+      value="!an7d --cid @{character_id} --carac ct --skill discretion --label Discrétion --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Discrétion</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_discretion_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_discretion_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Ra — Raisonnement ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Raisonnement
+              <label class="cluster-flag"><input type="checkbox" name="attr_ra_flag"><span class="flag-box"></span></label>
+            </div>
+            <input type="hidden" name="attr_ra">
+            <input type="hidden" name="attr_volonte">
+            <input type="hidden" name="attr_memoire">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_ra_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ra_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ra_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ra_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ra_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ra_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ra_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_ra_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_volonte"
+      value="!an7d --cid @{character_id} --carac ct --skill volonte --label Volonté --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Volonté</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_volonte_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_volonte_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_memoire"
+      value="!an7d --cid @{character_id} --carac ct --skill memoire --label Mémoire --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Mémoire</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_memoire_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_memoire_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Soc — Sociabilité ===== -->
+          <div class="cluster">
+            <div class="cluster-title">
+              Sociabilité
+              <label class="cluster-flag"><input type="checkbox" name="attr_soc_flag"><span class="flag-box"></span></label>
+            </div>
+            <input type="hidden" name="attr_soc">
+            <input type="hidden" name="attr_autorite">
+            <input type="hidden" name="attr_charme">
+
+            <div class="piprow carac">
+              <span class="piplabel">Carac</span>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_soc_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_soc_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_soc_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_soc_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_soc_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_soc_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_soc_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_soc_p8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_autorite"
+      value="!an7d --cid @{character_id} --carac ct --skill autorite --label Autorité --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Autorité</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_autorite_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_autorite_prog8"><span></span></label>
+              </div>
+            </div>
+
+            <div class="piprow">
+              <div class="piplabel">
+                <button type="roll" name="roll_charme"
+      value="!an7d --cid @{character_id} --carac ct --skill charme --label Charme --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+      class="btn-pill" style="width:100%;">Charme</button>
+              </div>
+              <div class="pips8">
+                <label class="pip8"><input type="checkbox" name="attr_charme_p1"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_charme_p2"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_charme_p3"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_charme_p4"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_charme_p5"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_charme_p6"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_charme_p7"><span></span></label>
+                <label class="pip8"><input type="checkbox" name="attr_charme_p8"><span></span></label>
+              </div>
+            </div>
+            <div class="progressrow">
+              <span class="piplabel">Progression</span>
+              <div class="squares8">
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog1"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog2"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog3"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog4"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog5"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog6"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog7"><span></span></label>
+                <label class="sq8"><input type="checkbox" name="attr_charme_prog8"><span></span></label>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /profile-clusters -->
+      </div><!-- /Profil -->
+
+      <!-- ========= Combat ========= -->
+      <div class="sheet-section">
+        <h2>Combat</h2>
+        <div class="combat-grid">
+          <!-- Résilience -->
+          <div class="cell box encadre" style="grid-area: resilience;">
+            <div class="box-title">Résilience</div>
+            <div class="res-topline">
+              <span class="res-pill res-pill-e">Endurance E : <strong><span name="attr_e"></span></strong></span>
+
+              <div class="segmented one-line">
+                <label class="segment"><input type="radio" name="attr_armure_type" value="none" checked><span>Sans armure (+0)</span></label>
+                <label class="segment"><input type="radio" name="attr_armure_type" value="legere"><span>Armure légère (+1)</span></label>
+                <label class="segment"><input type="radio" name="attr_armure_type" value="lourde"><span>Armure lourde (+2)</span></label>
+                <label class="segment"><input type="radio" name="attr_armure_type" value="complete"><span>Armure complète (+3)</span></label>
+              </div>
+
+              <label class="shield-check">
+                <input type="checkbox" name="attr_bouclier">
+                <span class="shield-label">Bouclier (+1)</span>
+              </label>
+
+              <span class="res-pill res-pill-total">Total : <strong><span name="attr_resilience_total"></span></strong></span>
+            </div>
+            <div class="res-breakdown" name="attr_resilience_breakdown"></div>
+          </div>
+
+          <!-- Armes -->
+          <div class="cell box encadre" style="grid-area: armes;">
+            <div class="box-title">Armes</div>
+            <div class="armes-head">
+              <span>Nom</span><span>Portée</span><span>Dés</span><span>Dégâts</span><span>1M/2M</span><span>Caractéristiques</span>
+            </div>
+            <fieldset class="repeating_armes">
+              <div class="armes-row">
+                <input type="text" name="attr_arm_nom">
+                <input type="text" name="attr_arm_portee" placeholder="m">
+                <input type="text" name="attr_arm_des" placeholder="ex: 1d6">
+                <input type="text" name="attr_arm_degats" placeholder="+F">
+                <select name="attr_arm_mains"><option value="1M">1M</option><option value="2M">2M</option></select>
+                <input type="text" name="attr_arm_caracs" placeholder="Perforant, Lourd…">
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Blessures -->
+          <div class="cell box encadre" style="grid-area: blessures;">
+            <div class="box-title">Blessures</div>
+            <fieldset class="repeating_blessures">
+              <div class="blessure-row">
+                <input type="text" name="attr_blessure" placeholder="Blessure…">
+                <label class="treated"><input type="checkbox" name="attr_blessure_traitee"><span>Traité</span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Conditions -->
+          <div class="cell box encadre" style="grid-area: conditions;">
+            <div class="box-title">Conditions</div>
+            <fieldset class="repeating_conditions">
+              <div class="list-row"><input type="text" name="attr_condition" placeholder="Condition…"></div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========= Talents & Savoirs ========= -->
+      <div class="sheet-section">
+        <h2>Talents</h2>
+        <div class="box">
+          <fieldset class="repeating_talents">
+            <div class="list-row"><input type="text" name="attr_talent_nom" placeholder="Talent…"></div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="sheet-section">
+        <h2>Savoirs</h2>
+        <div class="box">
+          <fieldset class="repeating_savoirs">
+            <div class="list-row"><input type="text" name="attr_savoir_nom" placeholder="Savoir…"></div>
+          </fieldset>
+        </div>
+      </div>
+
+    </div><!-- /page-personnage -->
+
+    <!-- ==================== PAGE 2 — MAGIE ==================== -->
+    <div class="page page-magie">
+      <h1>Magie</h1>
+
+      <div class="sheet-section">
+        <div class="magic-row-top">
+          <div class="topbox subbox vertical">
+            <div class="rowlabel">Niveau de mage</div>
+            <div class="pips4">
+              <label class="pip4"><input type="checkbox" name="attr_niveau_mage_p1"><span></span></label>
+              <label class="pip4"><input type="checkbox" name="attr_niveau_mage_p2"><span></span></label>
+              <label class="pip4"><input type="checkbox" name="attr_niveau_mage_p3"><span></span></label>
+              <label class="pip4"><input type="checkbox" name="attr_niveau_mage_p4"><span></span></label>
+            </div>
+          </div>
+
+          <div class="topbox centerbox">
+            <button type="roll" name="roll_incantation"
+    value="!an7d-incantation --cid @{character_id} --label Incantation --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+    class="btn-pill" style="width:100%;">Incantation</button>
+          </div>
+
+          <div class="topbox subbox vertical">
+            <div class="rowlabel">Réserve de défaillance magique</div>
+            <div class="pips4">
+              <label class="pip4"><input type="checkbox" name="attr_defaillance_res_p1"><span></span></label>
+              <label class="pip4"><input type="checkbox" name="attr_defaillance_res_p2"><span></span></label>
+              <label class="pip4"><input type="checkbox" name="attr_defaillance_res_p3"><span></span></label>
+              <label class="pip4"><input type="checkbox" name="attr_defaillance_res_p4"><span></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-section">
+        <div class="cell box encadre magic-effects">
+          <div class="box-title">Défaillance magique</div>
+          <fieldset class="repeating_echecs">
+            <div class="list-row">
+              <input type="text" name="attr_echec_effet" placeholder="Effet / sévérité / durée…">
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="sheet-section">
+        <h2>Sorts</h2>
+        <div class="cell box encadre magic-sorts">
+          <fieldset class="repeating_sorts">
+            <div class="sorts-row">
+              <input type="text" name="attr_sort_nom"     placeholder="Nom du sort">
+              <input type="text" name="attr_sort_cible"   placeholder="Cible (ex: 1 créature)">
+              <input type="text" name="attr_sort_portee"  placeholder="Portée (ex: 12 m)">
+              <input type="text" name="attr_sort_duree"   placeholder="Durée (ex: 1 min)">
+              <div class="togglegroup">
+                <input type="radio" name="attr_sort_state" value="" class="toggle-reset" checked hidden>
+                <label class="togglebtn small">
+                  <input type="radio" name="attr_sort_state" value="formalise"><span>Formalisé</span>
+                </label>
+                <label class="togglebtn small">
+                  <input type="radio" name="attr_sort_state" value="memorise"><span>Mémorisé</span>
+                </label>
+              </div>
+            </div>
+            <div class="sorts-effect">
+              <label>Effet</label>
+              <textarea name="attr_sort_effet" class="elastic-text" placeholder="Texte de l’effet, détails, exceptions…"></textarea>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div><!-- /page-magie -->
+
+    <!-- ==================== PAGE 3 — NOTES ==================== -->
+    <div class="page page-notes">
+      <h1>Notes</h1>
+
+      <div class="sheet-section">
+        <h2>Équipement – Possessions – Contacts</h2>
+        <div class="cell box encadre notes-box">
+          <div class="notes-grid">
+            <div class="notes-col">
+              <div class="notes-col-title">Équipement</div>
+              <fieldset class="repeating_equipement">
+                <div class="list-row"><input type="text" name="attr_equip_item" placeholder="Objet / Description…"></div>
+              </fieldset>
+            </div>
+            <div class="notes-col">
+              <div class="notes-col-title">Possessions</div>
+              <fieldset class="repeating_possessions">
+                <div class="list-row"><input type="text" name="attr_poss_item" placeholder="Bien / Valeur / Note…"></div>
+              </fieldset>
+            </div>
+            <div class="notes-col">
+              <div class="notes-col-title">Contacts</div>
+              <fieldset class="repeating_contacts">
+                <div class="list-row"><input type="text" name="attr_contact_item" placeholder="Nom — lien / faveur…"></div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-section">
+        <h2>Journal</h2>
+        <div class="cell box encadre journal-box">
+          <div class="journal-title">Journal du personnage</div>
+          <textarea name="attr_journal_texte" class="journal-textarea" placeholder="Écris ici : compte-rendus, indices, PNJ, scènes, dates…"></textarea>
+        </div>
+      </div>
+    </div><!-- /page-notes -->
+  </div><!-- /pages -->
+
+  <!-- ==================== PAGE PNJ (mode PNJ) ==================== -->
+  <!-- ==================== PAGE PNJ (caracs 1 ligne, paramètres 1 ligne, 3 seuils) ==================== -->
+<div class="page page-pnj">
+  <h1>Fiche PNJ</h1>
+
+  <div class="npc-card">
+
+    <!-- Identité -->
+    <div class="npc-band">Identité</div>
+    <div class="npc-name">
+      <label>Nom <input type="text" name="attr_npc_nom" placeholder="Nom du PNJ"></label>
+    </div>
+
+    <!-- Caractéristiques + Paramètres -->
+<!-- Caractéristiques -->
+<div class="npc-band">Caractéristiques</div>
+<div class="npc-table">
+
+  <!-- En-têtes caracs : 8 colonnes FIXES -->
+  <div class="npc-caracs-head">
+    <div>CC</div><div>CT</div><div>F</div><div>E</div>
+    <div>I</div><div>Ag</div><div>Ra</div><div>Soc</div>
+  </div>
+
+  <!-- Valeurs caracs : même grille EXACTE que l’entête -->
+  <div class="npc-caracs-vals">
+    <input type="number" name="attr_npc_cc"  min="0" max="8" value="0" class="carac">
+    <input type="number" name="attr_npc_ct"  min="0" max="8" value="0" class="carac">
+    <input type="number" name="attr_npc_f"   min="0" max="8" value="0" class="carac">
+    <input type="number" name="attr_npc_e"   min="0" max="8" value="0" class="carac">
+    <input type="number" name="attr_npc_i"   min="0" max="8" value="0" class="carac">
+    <input type="number" name="attr_npc_ag"  min="0" max="8" value="0" class="carac">
+    <input type="number" name="attr_npc_ra"  min="0" max="8" value="0" class="carac">
+    <input type="number" name="attr_npc_soc" min="0" max="8" value="0" class="carac">
+  </div>
+
+  <!-- Paramètres (2e ligne) : 3 colonnes égales — Type / Vitesse / Résilience -->
+  <div class="npc-params">
+    <div class="mi">
+      <div class="mi-lab">Type</div>
+      <select name="attr_npc_type">
+        <option value="larbin">Larbin</option>
+        <option value="brute">Brute</option>
+        <option value="champion" selected>Champion</option>
+        <option value="monstruosite">Monstruosité</option>
+      </select>
+    </div>
+    <div class="mi">
+      <div class="mi-lab">Vitesse</div>
+      <select name="attr_npc_vitesse">
+        <option value="lent">Lent</option>
+        <option value="normal" selected>Normal</option>
+        <option value="rapide">Rapide</option>
+      </select>
+    </div>
+    <div class="mi">
+      <div class="mi-lab">Résilience</div>
+      <input type="number" name="attr_npc_resilience" min="0" step="1" value="0">
+    </div>
+  </div>
+</div>
+
+
+    <!-- Seuils de blessure (3 colonnes côte à côte) -->
+    <div class="npc-band">Seuils de blessure</div>
+    <div class="npc-wounds">
+      <div class="w-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <div class="w-col">
+          <label class="w-head" style="display:flex;align-items:center;gap:6px;">
+            <input type="number" name="attr_npc_w1" min="0" step="1" value="0" style="width:56px;text-align:center;padding:3px 4px;"> × Wounds
+          </label>
+          <textarea name="attr_npc_w1_note" placeholder="Note…"></textarea>
+        </div>
+        <div class="w-col">
+          <label class="w-head" style="display:flex;align-items:center;gap:6px;">
+            <input type="number" name="attr_npc_w2" min="0" step="1" value="0" style="width:56px;text-align:center;padding:3px 4px;"> × Wound
+          </label>
+          <textarea name="attr_npc_w2_note" placeholder="Note…"></textarea>
+        </div>
+        <div class="w-col">
+          <label class="w-head" style="display:flex;align-items:center;gap:6px;">
+            <input type="number" name="attr_npc_w3" min="0" step="1" value="0" style="width:56px;text-align:center;padding:3px 4px;"> × Wounds
+          </label>
+          <textarea name="attr_npc_w3_note" placeholder="Note…"></textarea>
+        </div>
+      </div>
+      <div class="w-foot">Utilisé surtout pour <b>Larbin</b>, <b>Brute</b> & <b>Monstruosité</b>.</div>
+    </div>
+
+<!-- ===== JETS RAPIDES (PNJ) — robuste ===== -->
+<div class="sheet-section">
+  <h2>Jets rapides</h2>
+  <div class="box">
+    <fieldset class="repeating_npcquick">
+      <div class="npcquick-row">
+        <input type="text" name="attr_npcquick_name"  placeholder="Nom (ex: Athlétisme)" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <input type="text" name="attr_npcquick_code"  placeholder="Code XdY (ex: 4D2)"   autocomplete="off" autocapitalize="off" spellcheck="false">
+        <!-- Le roll lit les valeurs de LA MÊME LIGNE -->
+        <button type="roll" name="roll_npcquick"
+          value="!an7d-code --cid @{character_id} --label @{npcquick_name} --code @{npcquick_code} --mode ?{Mode|Standard,standard|Glorieux,glorieux|Funeste,funeste} --bonus ?{Bonus/Malus|0}"
+          class="btn-pill"> Lancer</button>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+
+    <!-- Notes & Équipement -->
+    <div class="npc-band">Notes & Équipement</div>
+    <div class="npc-two" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div>
+        <div class="small-title">Notes</div>
+        <textarea name="attr_npc_notes" placeholder="Notes diverses…"></textarea>
+      </div>
+      <div>
+        <div class="small-title">Équipement</div>
+        <textarea name="attr_npc_equipement" placeholder="Objets, armes, armures…"></textarea>
+      </div>
+    </div>
+
+  </div><!-- /npc-card -->
+</div><!-- /page-pnj -->
+
+  <!-- ========== SHEET WORKERS (scripts) ========== -->
+  <script type="text/worker">
+  /* ===== Pips 8 → valeur numérique dans attr_* ===== */
+  const registerPips8ToValue = (base) => {
+    const keys = Array.from({length:8}, (_,i)=>`${base}_p${i+1}`);
+    const ev = keys.map(k=>`change:${k}`).join(' ');
+    on(ev, () => {
+      getAttrs(keys, v => {
+        let val = 0;
+        for (let i=0;i<8;i++){ if(v[`${base}_p${i+1}`]==='on') val++; }
+        const up = {}; up[base] = val;
+        setAttrs(up);
+      });
+    });
+  };
+
+  /* Caracs + compétences (toutes) */
+  [
+    'cc','melee','defense',
+    'ct','tir','lancer',
+    'f','puissance','labeur',
+    'e','survie','resistance',
+    'i','perception','dexterite',
+    'ag','athletisme','discretion',
+    'ra','volonte','memoire',
+    'soc','autorite','charme'
+  ].forEach(registerPips8ToValue);
+
+  /* Résilience = E + armure + bouclier */
+  const ARMOR_BONUS={none:0,legere:1,lourde:2,complete:3};
+  function calcResilienceTotal(eVal,armorType,hasShield){
+    const base=parseInt(eVal,10)||0;
+    const a=ARMOR_BONUS[armorType]??0;
+    const s=hasShield?1:0;
+    const total=base+a+s;
+    setAttrs({
+      resilience_total:total,
+      resilience_breakdown:`E ${base} + Armure ${a} + Bouclier ${s} = ${total}`
+    });
+  }
+  on('change:e change:armure_type change:bouclier sheet:opened',()=>{
+    getAttrs(['e','armure_type','bouclier'],(v)=>calcResilienceTotal(v.e,v.armure_type||'none',v.bouclier==='on'));
+  });
+
+  /* Magie : Incantation = Volonté */
+  function syncIncantationFromVolonte(){
+    getAttrs(['volonte'], (v)=>{
+      const val=parseInt(v.volonte,10) || 0;
+      setAttrs({ incantation: val });
+    });
+  }
+  on('sheet:opened change:volonte', syncIncantationFromVolonte);
+  </script>
+
+</div><!-- /sheet-wrapper -->

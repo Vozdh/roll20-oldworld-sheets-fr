@@ -1,0 +1,6 @@
+{
+  "html": "html/character.html",
+  "css": "css/sheet.css",
+  "authors": "Vozdh",
+   "instructions": "Importer le HTML et le CSS dans Roll20. API requise pour certaines fonctions.",
+    }
