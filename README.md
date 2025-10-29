@@ -1,0 +1,5 @@
+[README.de.md](https://github.com/user-attachments/files/23219864/README.de.md)
+[README.en.md](https://github.com/user-attachments/files/23219865/README.en.md)
+[README.it.md](https://github.com/user-attachments/files/23219867/README.it.md)
+[README.fr.md](https://github.com/user-attachments/files/23219866/README.fr.md)
+[README.pl.md](https://github.com/user-attachments/files/23219869/README.pl.md)
